@@ -15,7 +15,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import re
 
 
-bravo_db = AsyncIOMotorClient("mongodb://bravo:lol@ds113700.mlab.com:13700/bravo")
+bravo_db = AsyncIOMotorClient(os.environ['DB'])
 
 async def getprefix(bot, message):
     if isinstance(message.channel, discord.DMChannel): return "k."
@@ -131,4 +131,4 @@ async def ping(ctx):
     await ctx.send("Pong! https://www.tenor.co/zP3r.gif ")
 
 
-bot.run('NDUwNDE5MzA1NjcxMDMyODMy.De2mNg.TXunZZUgxqeKKIWpWZLQHLr4TnM')
+bot.run(os.environ['TOKEN'])
