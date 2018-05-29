@@ -14,7 +14,7 @@ class Idiotic:
     """These commands are simply to idiotic for me."""
     def __init__(self, bot):
         self.bot = bot
-        self.token = "TxdGgJJl3C1jBCZYzmmd"
+        self.token = os.environ['IDIOTICAPI']
         self.client = idioticapi.Client(self.token, dev=True)
 
     @commands.group(invoke_without_command=True)
