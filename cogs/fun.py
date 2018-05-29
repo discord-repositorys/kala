@@ -1,0 +1,132 @@
+import discord
+from discord.ext import commands
+import random
+import asyncio
+import datetime
+import time
+import traceback
+import sys
+import aiohttp
+import base64
+
+
+
+
+
+class Fun:
+    """Fun Commands"""
+    def __init__(self, bot):
+        self.bot = bot
+
+
+    @commands.command()
+    async def emojify(self, ctx, *, text: str):
+        """Turns your text into emojis!"""
+        try:
+            await ctx.message.delete()
+        except discord.Forbidden:
+            pass
+        to_send = ""
+        for char in text:
+            if char == " ":
+                to_send += " "
+            elif char.lower() in 'qwertyuiopasdfghjklzxcvbnm':
+                to_send += f":regional_indicator_{char.lower()}:  "
+            elif char in '1234567890':
+                numbers = {
+                    "1": "one",
+                    "2": "two",
+                    "3": "three",
+                    "4": "four",
+                    "5": "five",
+                    "6": "six",
+                    "7": "seven",
+                    "8": "eight",
+                    "9": "nine",
+                    "0": "zero"
+                }
+                to_send += f":{numbers[char]}: "
+            else:
+                return await ctx.send("Characters must be either a letter or number. Anything else is unsupported.")
+        if len(to_send) > 2000:
+            return await ctx.send("Emoji is too large to fit in a message!")
+        await ctx.send(to_send)
+    
+    @commands.group(invoke_without_command=True)
+    async def base64(self, ctx):
+        '''Encode and decode base64 Text time to annoy your friends with encoded text.'''
+        await ctx.send("Base64 Encode/Decode\nCommands: encode: Encode text\ndecode: Decode text")
+
+    @base64.command()
+    async def encode(self, ctx, *, msg: str):
+        '''Encode base64 text'''
+        try:
+            x = base64.b64encode(msg.encode("ascii")).decode("ascii")
+            if len(x) > 1950: return await ctx.send("Results too long")
+            await ctx.send(f"```{x}```")
+        except Exception as e:
+            await ctx.send("Something went wrong.")
+            print(e)
+        
+    @base64.command()
+    async def decode(self, ctx, *, msg: str):
+        '''Decode base64 text'''
+        try:
+            x = base64.b64decode(msg)
+            if len(x) > 1950: return await ctx.send("Results too long")
+            await ctx.send(f"```{x.decode('ascii')}```")
+        except Exception as e:
+            await ctx.send("Invalid Base64 Text")
+            print(e)
+
+    @commands.command(aliases=["xmas"])
+    async def christmas(self, ctx):
+        now = datetime.datetime.utcnow()
+        xmas = datetime.datetime(now.year, 12, 25)
+        if xmas < now:
+            xmas = xmas.replace(year=now.year + 1)
+        delta = xmas - now
+        weeks, remainder = divmod(int(delta.total_seconds()), 604800)
+        days, remainder2 = divmod(remainder, 86400)
+        hours, remainder3 = divmod(remainder2, 3600)
+        minutes, seconds = divmod(remainder3, 60)
+        embed = discord.Embed(color=0x10a542)
+        embed.add_field(name=":gift::christmas_tree::santa:Time left until Christmas:santa::christmas_tree::gift:", value=f"{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.")
+        await ctx.send(embed=embed)
+
+
+    @commands.command(aliases=['ween'])
+    async def halloween(self, ctx):
+        now = datetime.datetime.utcnow()
+        ween = datetime.datetime(now.year, 10, 31)
+        if ween < now:
+            ween = ween.replace(year=now.year + 1)
+        delta = ween - now
+        weeks, remainder = divmod(int(delta.total_seconds()), 604800)
+        days, remainder2 = divmod(remainder, 84000)
+        hours, remainder3 = divmod(remainder2, 3600)
+        minutes, seconds = divmod(remainder3, 60)
+        embed = discord.Embed(color=discord.Color.orange())
+        embed.add_field(name=":jack_o_lantern:Time left until Halloween:jack_o_lantern:", value=f'{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.')
+        await ctx.send(embed=embed)
+
+    @commands.command(aliases=['ny'])
+    async def newyear(self, ctx):
+        now = datetime.datetime.utcnow()
+        ny = datetime.datetime(now.year, 1, 1)
+        if ny < now:
+            ny = ny.replace(year=now.year + 1)
+        delta = ny - now
+        weeks, remainder = divmod(int(delta.total_seconds()), 604800)
+        days, remainder2 = divmod(remainder, 84000)
+        hours, remainder3 = divmod(remainder2, 3600)
+        minutes, seconds = divmod(remainder3, 60)
+        embed = discord.Embed(color=discord.Color.red())
+        embed.add_field(name=f":confetti_ball:{self.bot.get_emoji(450881603149889539)}Time left until New Year{self.bot.get_emoji(450881603149889539)}:confetti_ball:", value=f'{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.')
+        await ctx.send(embed=embed)
+
+    
+    
+
+def setup(bot):
+    bot.add_cog(Fun(bot))
