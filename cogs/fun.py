@@ -129,7 +129,7 @@ class Fun:
     @commands.command(aliases=['bd', 'bday'])
     async def birthday(self, ctx):
         now = datetime.datetime.utcnow()
-        ny = datetime.datetime(now.year, 06, 14)
+        ny = datetime.datetime(now.year, 6, 14)
         if ny < now:
             ny = ny.replace(year=now.year + 1)
         delta = ny - now
