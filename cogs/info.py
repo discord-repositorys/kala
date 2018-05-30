@@ -98,9 +98,9 @@ class Info:
         server_embed.add_field(name="Owner", value=guild.owner.name + "#" + guild.owner.discriminator, inline=True)
         server_embed.add_field(name="AFK Channel", value=guild.afk_channel, inline=True)
         server_embed.add_field(name="Verification", value=verification_levels[guild.verification.level])
-	server_embed.add_field(name="Explicit Content Filter", value=content_filter[guild.explicit_content_filter])
-	server_embed.add_field(name="2FA Requirement", value=mfs_levels[guild.mfa_level])
-	server_embed.add_field(name="Ban Count", value=ban_count)
+        server_embed.add_field(name="Explicit Content Filter", value=content_filter[guild.explicit_content_filter])
+        server_embed.add_field(name="2FA Requirement", value=mfs_levels[guild.mfa_level])
+        server_embed.add_field(name="Ban Count", value=ban_count)
         server_embed.add_field(name="Voice Region", value=guild.region, inline=True)
         server_embed.add_field(name="Considered Large", value=guild.large, inline=True)
 	# Find out where in our join position this server is
