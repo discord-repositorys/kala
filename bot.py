@@ -52,7 +52,7 @@ if 'TOKEN' in os.environ:
     TOKEN = os.environ['TOKEN']
 
 def dev_check(id):
-    with open('data/devs.json') as f:
+    with open('devs.json') as f:
         devs = json.load(f)
         if id in devs:
             return True
