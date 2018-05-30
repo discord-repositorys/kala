@@ -129,6 +129,7 @@ async def _set(ctx, Type=None, *, thing=None):
 @bot.command()
 async def ping(ctx):
     """Ping the bot"""
+    color = ctx.author.color
     embed = discord.Embed(color=color, Title="Pinging Kala")
     embed.description = 'Please wait...'
     msg = await ctx.send(embed=embed)
