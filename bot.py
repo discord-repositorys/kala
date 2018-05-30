@@ -124,18 +124,18 @@ async def _set(ctx, Type=None, *, thing=None):
         await ctx.send('Presence set to `nil`.')
       else:
         await ctx.send('Want me to do something? YOU do it right first. Usage: *presence [game/stream] [msg]')
-
-
+                          
 @bot.command()
 async def ping(ctx):
-    """Ping the bot"""
-    color = ctx.author.color
-    embed = discord.Embed(color=color, Title="Pinging Kala")
-    embed.description = 'Please wait...'
-    msg = await ctx.send(embed=embed)
-    embed = discord.Embed(color=color, title="Ping! Latency is:')
-    embed.set_thumbnail(url="https://www.tenor.co/zP3r.gif")
-    await msg.edit(embed = embed)
+    """Ping."""
+    color = discord.Color(value=0x00ff00)
+    e = discord.Embed(color=color, title='Pinging Kala')
+    e.description = 'Please wait...'
+    msg = await ctx.send(embed=e)
+    em = discord.Embed(color=color, title='Ping! Bot Latency is: ')
+    em.description = f"{bot.latency * 1000:.4f} ms"
+    em.set_thumbnail(url="https://www.tenor.co/zP3r.gif")
+    await msg.edit(embed=em)
     
 @bot.command()
 async def cmdsrun(ctx):
