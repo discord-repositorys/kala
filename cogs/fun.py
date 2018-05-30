@@ -20,7 +20,7 @@ class Fun:
         self.bot = bot
 	
     @commands.command()
-	async def cat(self, ctx):
+    async def cat(self, ctx):
 		async with aiohttp.ClientSession() as session:
 			async with session.get('http://random.cat/meow') as resp:
 				data = await resp.json()
