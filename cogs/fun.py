@@ -35,7 +35,7 @@ class Fun:
         data = await resp.json()
       embed = discord.Embed(title="Who\'s that pokemon!?", color = ctx.author.color)
       embed.set_image(url=data['sprites']['front_default'])
-      embed.set_footer(text="Use all lowercase.\nDoesn\'t register with uppercase letters.")
+      embed.set_footer(text='Use all lowercase. Doesn\'t register with uppercase letters.')
       await ctx.send(embed = embed)
       guess = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
       if guess.content == data['name']:
