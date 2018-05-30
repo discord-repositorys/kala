@@ -21,9 +21,9 @@ class Fun:
 	
     @commands.command()
     async def roast(self, ctx, user: discord.Member = None):
-		async with aiohttp.ClientSession().get('https://insult.mattbas.org/api/insult.json') as resp:
-			data = await resp.json(content_type=None)
-       	        await ctx.send(data['insult'])
+        async with aiohttp.ClientSession().get('https://insult.mattbas.org/api/insult.json') as resp:
+	    data = await resp.json(content_type=None)
+       	await ctx.send(data['insult'])
 
 
     @commands.command()
