@@ -52,7 +52,18 @@ class Meta:
         perms.add_reactions = True
         await ctx.send(f'<{discord.utils.oauth_url(self.bot.client_id, perms)}>')
         
-    
+    @commands.command()
+    async def discrim(self, ctx, *, discriminator:str):
+        """Gets a username#discriminator list of all users that the bot can see with the specified discriminator"""
+        members = []
+        for member in list(self.bot.get_all_members()):
+            if member.discriminator == discriminator and str(member) not in members:
+                members.append(str(member))
+        if len(members) == 0:
+            members = Language.get("information.no_discrims_found", ctx).format(discriminator)
+        else:
+            members = "```{}```".format(", ".join(members))
+        await ctx.send(members)
         
 def setup(bot):
     bot.add_cog(Meta(bot))
