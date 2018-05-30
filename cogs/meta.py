@@ -30,4 +30,4 @@ class Meta:
         await ctx.send(msg)
         
 def setup(bot):
-    bot.add_cog(Meta(bot)
+    bot.add_cog(Meta(bot))
