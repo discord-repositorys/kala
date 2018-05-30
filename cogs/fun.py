@@ -38,7 +38,7 @@ class Fun:
       await ctx.send(embed = embed)
       guess = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
       if guess.content == data['name']:
-    	await ctx.send(f'Correct! That Pokemon is: {data["name"]}!')
+        await ctx.send(f'Correct! That Pokemon is: {data["name"]}!')
       else:
         await ctx.send(f'Wrong! That Pokemon is: {data["name"]}!')
 
