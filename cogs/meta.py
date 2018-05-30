@@ -32,7 +32,23 @@ class Meta:
             return await ctx.send('Output too long to display.')
         await ctx.send(msg)
         
-    
+    @commands.command(aliases=['invite'])
+    async def join(self, ctx):
+        """Joins a server."""
+        perms = discord.Permissions.none()
+        perms.read_messages = True
+        perms.external_emojis = True
+        perms.send_messages = True
+        perms.manage_roles = True
+        perms.manage_channels = True
+        perms.ban_members = True
+        perms.kick_members = True
+        perms.manage_messages = True
+        perms.embed_links = True
+        perms.read_message_history = True
+        perms.attach_files = True
+        perms.add_reactions = True
+        await ctx.send(f'<{discord.utils.oauth_url(self.bot.client_id, perms)}>')
         
 def setup(bot):
     bot.add_cog(Meta(bot))
