@@ -7,7 +7,6 @@ import time
 import traceback
 import sys
 import aiohttp
-from cogs import UserTime
 
 startTime = datetime.datetime.now()
 
@@ -43,8 +42,7 @@ class Info:
         server_embed.title = guild.name
         
         # Get localized user time
-        local_time = UserTime.getUserTime(ctx.author, self.settings, guild.created_at)
-        time_str = "{} {}".format(local_time['time'], local_time['zone'])
+        
         
         server_embed.description = "Created at {}".format(time_str)
         online_members = 0
