@@ -68,33 +68,33 @@ class Meta:
         await ctx.send(members)
         
      def _get_output(self, w_text):
-		if "tornado" in w_text.lower():
-			return "🌪️ "+w_text
-		if any(x in w_text.lower() for x in ["hurricane", "tropical"]):
-			return "🌀 "+w_text
-		if any(x in w_text.lower() for x in ["snow", "flurries", "hail"]):
-			return "🌨️ "+w_text
-		if "thunder" in w_text.lower():
-			return "⛈️ "+w_text
-		if any(x in w_text.lower() for x in ["rain", "drizzle", "showers", "sleet"]):
-			return "🌧️ "+w_text
-		if "cold" in w_text.lower():
-			return "❄️ "+w_text
-		if any(x in w_text.lower() for x in ["windy", "blustery", "breezy"]):
-			return "🌬️ "+w_text
-		if "mostly cloudy" in w_text.lower():
-			return "⛅ "+w_text
-		if "partly cloudy" in w_text.lower():
-			return "🌤️ "+w_text
-		if "cloudy" in w_text.lower():
-			return "☁️ "+w_text
-		if "fair" in w_text.lower():
-			return "🌄 "+w_text
-		if any(x in w_text.lower() for x in ["hot", "sunny", "clear"]):
-			return "☀️ "+w_text
-		if any(x in w_text.lower() for x in ["dust", "foggy", "haze", "smoky"]):
-			return "️🌫️ "+w_text
-		return w_text
+	if "tornado" in w_text.lower():
+		return "🌪️ "+w_text
+	if any(x in w_text.lower() for x in ["hurricane", "tropical"]):
+		return "🌀 "+w_text
+	if any(x in w_text.lower() for x in ["snow", "flurries", "hail"]):
+		return "🌨️ "+w_text
+	if "thunder" in w_text.lower():
+		return "⛈️ "+w_text
+	if any(x in w_text.lower() for x in ["rain", "drizzle", "showers", "sleet"]):
+		return "🌧️ "+w_text
+	if "cold" in w_text.lower():
+		return "❄️ "+w_text
+	if any(x in w_text.lower() for x in ["windy", "blustery", "breezy"]):
+		return "🌬️ "+w_text
+	if "mostly cloudy" in w_text.lower():
+		return "⛅ "+w_text
+	if "partly cloudy" in w_text.lower():
+		return "🌤️ "+w_text
+	if "cloudy" in w_text.lower():
+		return "☁️ "+w_text
+	if "fair" in w_text.lower():
+		return "🌄 "+w_text
+	if any(x in w_text.lower() for x in ["hot", "sunny", "clear"]):
+		return "☀️ "+w_text
+	if any(x in w_text.lower() for x in ["dust", "foggy", "haze", "smoky"]):
+		return "️🌫️ "+w_text
+	return w_text
 
 	def _f_to_c(self, f):
 		return int((int(f)-32)/1.8)
