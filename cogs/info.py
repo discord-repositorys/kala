@@ -38,6 +38,9 @@ class Info:
         
         server_embed = discord.Embed(color=ctx.author.color)
         server_embed.title = guild.name
+        
+        
+        
         server_embed.description = "Some server stats"
         online_members = 0
         bot_member     = 0
@@ -63,54 +66,18 @@ class Info:
                 b_string,
                 round((bot_online/bot_member)*100, 2)
         )
-        guild_age = (ctx.message.created_at - guild.created_at).days
-        created_at = f"Server created on {guild.created_at.strftime('%b %d %Y at %H:%M')}. That\'s over {guild_age} days ago!"
-        color = discord.Color.green()
-        roles = [x.name for x in guild.roles]
-        role_length = len(roles)
-        roles = ', '.join(roles)
-        time = str(guild.created_at.strftime("%b %m, %Y, %A, %I:%M %p"))
-        try:
-            ban_count = len(await guild.bans())
-        except discord.Forbidden:
-            ban_count = "Kala Lacks the `ban members` permission. (In order to retrieve bans)"
-        verification_levels = {
-            0: "**None** No Security measures have been taken.",
-            1: "**Low** Light Security measures have been taken. (Verified Email)",
-            2: "**Moderate** Moderate Security measures have been taken. (Registered on Discord for longer than 5 minutes)",
-            3: "**High** High Security measures have been taken. (Member of server for longer than 10 minutes)",
-            4: "**Fort Knox** Almost inpenetrable Security measures have been taken. (Verified Phone)"
-        }
-        content_filter = {
-            0: "**None** No Scanning enabled. (Don't scan any messages.)",
-            1: "**Moderate** Moderate Scanning enabled. (Scan messages from members without a role.)",
-            2: "**High** High Scanning enabled. (Scans every message.)"
-        }
-        mfa_levels = {
-            0: "Does not require 2FA for members with Admin permission.",
-            1: "Requires 2FA for members with Admin permission."
-        }
-        regular_emojis = len([x for x in guild.emojis if not x.animated])
-        animated_emojis = len([x for x in guild.emojis if x.animated])
-        textchannels = guild.text_channels
-        voicechannels = guild.voice_channels
-        
-        server_embed.set_thumbnail(url=guild.icon_url)
-        server_embed.add_field(name='Server ID', value=str(guild.id))
-        server_embed.add_field(name='Owner', value=guild.owner.name + "#" + guild.owner.discriminator)
-        server_embed.add_field(name='Members ({:,} total)'.format(len(guild.members), value=user_string)
-        server_embed.add_field(name='Emoji Count', value=regular_emojis + animated_emojis)
-        server_embed.add_field(name='Normal Emojis', value=regular_emojis)
-        server_embed.add_field(name='Animated Emojis', value=animated_emojis)
-        server_embed.add_field(name='Server Region', value=str(guild.region))
-        server_embed.add_field(name='Roles', value=str(len(guild.roles))
-        server_embed.add_field(name='Default Role', value=guild.default_role)
-        server_embed.add_field(name='Considered Large', value=guild.large)                
-        server_embed.add_field(name='Server Verification Level', value=verification_levels[guild.verification_level])
-        server_embed.add_field(name='Explicit Content Filter', value=content_filter[guild.explicit_content_filter])
-        server_embed.add_field(name='2FA Requirement', value=mfa_levels[guild.mfa_level])
-        server_embed.add_field(name='Ban Count', value=ban_count)
-        server_embed.set_footer(text='Created - %s' % time)
+        #server_embed.add_field(name="Members", value="{:,}/{:,} online ({:.2f}%)\n{:,} {} ({}%)".format(online_members, len(guild.members), bot_percent), inline=True)
+        server_embed.add_field(name="Members ({:,} total)".format(len(guild.members)), value=user_string, inline=True)
+        server_embed.add_field(name="Roles", value=str(len(guild.roles)), inline=True)
+        chandesc = "{:,} text, {:,} voice".format(len(guild.text_channels), len(guild.voice_channels))
+        server_embed.add_field(name="Channels", value=chandesc, inline=True)
+        server_embed.add_field(name="Default Role", value=guild.default_role, inline=True)
+        server_embed.add_field(name="Owner", value=guild.owner.name + "#" + guild.owner.discriminator, inline=True)
+        server_embed.add_field(name="AFK Channel", value=guild.afk_channel, inline=True)
+        server_embed.add_field(name="Verification", value=guild.verification_level, inline=True)
+        server_embed.add_field(name="Voice Region", value=guild.region, inline=True)
+        server_embed.add_field(name="Considered Large", value=guild.large, inline=True)
+	# Find out where in our join position this server is
         joinedList = []
         popList    = []
         for g in self.bot.guilds:
@@ -166,8 +133,7 @@ class Info:
             # No Icon
             server_embed.set_thumbnail(url=ctx.author.default_avatar_url)
         server_embed.set_footer(text="Server ID: {}".format(guild.id))
-        
-        await ctx.send(embed=server_embed)
+        await ctx.channel.send(embed=server_embed)
 
 
     @commands.command(aliases=['ui', 'user'])
