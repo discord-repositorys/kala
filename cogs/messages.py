@@ -8,7 +8,7 @@ class Messages:
     self.bot = bot
     
   @commands.command()
-  @commmands.has_permissions(manage_guild=True)
+  @commmands.has_permissions(manage_guild=True, hidden=True)
   async def setup(self, ctx):
     with open('../servers.json') as f:
       data = json.loads(f.read())
@@ -82,7 +82,7 @@ class Messages:
     await ctx.send('Setup complete. Enjoy your server!')
     
   @commands.command()
-  @commands.has_permissions(manage_guild=True)
+  @commands.has_permissions(manage_guild=True, hidden=True)
   async def config(self, ctx, setting=None, *, change=None):
     if setting == None:
 			await ctx.send('Here is what you can change: prefix, welcome_message, welcome_channel, leave_message, mod_log')
