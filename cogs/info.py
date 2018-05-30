@@ -15,13 +15,7 @@ class Info:
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.command(hidden=True)
-    async def socketstats(self, ctx):
-        delta = datetime.datetime.utcnow() - self.bot.uptime
-        minutes = delta.total_seconds() / 60
-        total = sum(self.bot.socket_stats.values())
-        cpm = total / minutes
-        await ctx.send(f'{total} socket events observed ({cpm:.2f}/minute):\n{self.bot.socket_stats}')
+    
 
     @commands.command(aliases=['si', 'sinfo'])
     async def serverinfo(self, ctx):
