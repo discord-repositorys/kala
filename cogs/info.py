@@ -21,7 +21,7 @@ class Info:
     async def serverinfo(self, ctx):
         """Get some Server info!"""
         guild = None
-	guild_name == None
+	guild_name = None
         if guild_name == None:
             guild = ctx.guild
         else:
