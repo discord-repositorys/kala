@@ -130,6 +130,11 @@ async def _set(ctx, Type=None, *, thing=None):
 async def ping(ctx):
     """Ping the bot"""
     await ctx.send("Pong! https://www.tenor.co/zP3r.gif ")
+    
+@bot.command()
+async def cmdsrun(ctx):
+    """See how many commands the bot has run!"""
+    await ctx.send(bot.commands_run)
 
 
 bot.run(os.environ['TOKEN'])
