@@ -255,27 +255,6 @@ class Utility:
             member += f"{x.name} \n"
         em.add_field(name='Members in the Role', value=member)
         await ctx.send(embed=em)
-
-    @commands.command()
-    async def weather(self, ctx, *, location=None):
-        '''Gives weather info on a location'''
-        if not location:
-            return
-        async with aiohttp.ClientSession() as session:
-            async with session.get("http://api.tanvis.xyz/weather/" + location) as r:
-                obj = await r.json()
-
-        try:
-            e = discord.Embed(color=discord.Color.gold(), title=obj["name"])
-            e = e.set_thumbnail(url=obj["icon"])
-            e = e.add_field(name="Celsius", value=obj["celsius"], inline=True)
-            e = e.add_field(name="Fahrenheit", value=obj["fahrenheit"], inline=True)
-            e = e.add_field(name="Weather", value=obj["weather"], inline=True)
-            e = e.add_field(name="Wind Speed", value=obj["windSpeed"], inline=True)
-
-            await ctx.send(embed=e)
-        except:
-            await ctx.send("The location is invalid!")
             
     @commands.command()
 	async def weather(self, ctx, *, city: str):
