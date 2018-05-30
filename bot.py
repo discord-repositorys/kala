@@ -37,6 +37,7 @@ async def save_prefix(prefix, guildID, ctx):
 
 #prefixes=['k.', 'K.']
 bot = commands.Bot(command_prefix=getprefix, owner_id=426060491681431562)
+bot._last_result = None
 bot.commands_run = 0
 
 def cleanup_code(content):
