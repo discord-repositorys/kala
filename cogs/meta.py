@@ -33,7 +33,7 @@ class Meta:
         await ctx.send(msg)
         
     @commands.command()
-    async def d.pysource(self, ctx, *, command: str = None):
+    async def dpysource(self, ctx, *, command: str = None):
         """Displays my full source code or for a specific command.
         To display the source code of a subcommand you can separate it by
         periods, e.g. tag.create for the create subcommand of the tag command
