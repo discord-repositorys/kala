@@ -9,6 +9,7 @@ import sys
 import aiohttp
 import urllib.parse
 import wikipedia
+import openweathermapy.core as weather
 
 
 class InvalidHTTPResponse(Exception):
