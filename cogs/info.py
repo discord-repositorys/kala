@@ -166,32 +166,6 @@ class Info:
         '''Get user info for yourself or someone in the guild'''
         if user is None:
             user = ctx.author
-	if member.game is None or member.game.url is None:
-            if str(member.status) == "online":
-                status_colour = embed_color_succes
-                status_name = "Online"
-            elif str(member.status) == "idle":
-                status_colour = embed_color_attention
-                status_name = "Away / Idle"
-            elif str(member.status) == "dnd":
-                status_colour = embed_color_error
-                status_name = "Do Not Disturb"
-            elif str(member.status) == "offline" or str(member.status) == "invisible":
-                status_colour = 0x000000
-                status_name = "Offline"
-            else:
-                status_colour = member.colour
-                status_name = "N/A"
-        else:
-            status_colour = 0x593695
-            status_name = "Streaming"
-
-        if member.game is None:
-            activity = f"**Doing**: Completely nothing!"
-        elif member.game.url is None:
-            activity = f"**Playing**: {member.game}"
-        else:
-            activity = f"**Streaming**: [{member.game}]({member.game.url})"
 
         color = ctx.author.color
         guild = ctx.message.guild
@@ -209,14 +183,13 @@ class Info:
 	
         
         time = ctx.message.created_at
-        desc = f'{user.name} is currently in {status_name} mode.'
+        desc = f'{user.name} is currently in {user.status} mode.'
         member_number = sorted(guild.members, key=lambda m: m.joined_at).index(user) + 1
         em = discord.Embed(color=color, description=desc, timestamp=time)
         em.add_field(name=f'Username', value=f'{user.name}#{user.discriminator}')
         em.add_field(name=f'User ID', value= user.id)
         em.add_field(name=f'Servers Shared', value=f'{shared}')
         em.add_field(name=f'Highest Role', value=highrole)
-        em.add_field(name='Activity', value=activity
         em.add_field(name=f'Account Created At', value = user.created_at.__format__('Date: **%d/%b/%Y**\nTime: **%H:%M:%S**'))
         em.add_field(name=f'Member Number', value=member_number)
         em.add_field(name=f'Joined At', value=user.joined_at.__format__('%d/%b/%Y at %H:%M:%S'))
