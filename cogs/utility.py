@@ -281,7 +281,7 @@ class Utility:
         embed.add_field(name='Wind Speed', value='{}m/s'.format(data('wind.speed')))       
         embed.add_field(name='Low and High Temp', value='{}F - {}F\n{}C - {}C'.format(low2, high2, low, high))
         embed.set_footer(text='Weather Data from OpenWeatherMap.org')
-        embed.set_thumbnail(url='../OpenWeatherMap_Logo.png')
+        embed.set_thumbnail(url='../OpenWeatherMap_logo.png')
         await ctx.send(embed=embed)
 
     @commands.group(invoke_without_command=True)
