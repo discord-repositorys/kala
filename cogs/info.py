@@ -100,8 +100,6 @@ class Info:
         server_embed.add_field(name=f'Server ID', value=str(guild.id))
         server_embed.add_field(name=f'Owner', value=guild.owner.name + "#" + guild.owner.discriminator)
         server_embed.add_field(name='Members ({:,} total)'.format(len(guild.members), value=user_string)
-        server_embed.add_field(name=f'Non-Bots', value=len([x for x in ctx.guild.members if not x.bot]))
-        server_embed.add_field(name=f'Bots', value=len([x for x in ctx.guild.members if x.bot]))
         server_embed.add_field(name=f'Channel Categories', value=len(guild.categories))
         chandesc = "{;,} text, {;,} voice".format(len(guild..text_channels), len(guild.voice_channels)
         server_embed.add_field(name=f'Total Channels', value=chandesc)
