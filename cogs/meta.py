@@ -65,5 +65,20 @@ class Meta:
             members = "```{}```".format(", ".join(members))
         await ctx.send(members)
         
+    @commands.command()
+    async def isitdown(self, ctx, *, url:str):
+        """Checks to see if a website is online or not"""
+        await ctx.channel.trigger_typing()
+        url = url.strip("<>")
+        if not url.startswith("http://") and not url.startswith("https://"):
+            url = "http://{}".format(url)
+        try:
+            starttime = time.time()
+            requests.get(url, timeout=3)
+            ping = Language.get("information.ping_time", ctx) % (time.time() - starttime)
+            await ctx.send(Language.get("information.online_ping", ctx).format(url, ping))
+        except:
+            await ctx.send(Language.get("information.offline_ping", ctx).format(url))
+        
 def setup(bot):
     bot.add_cog(Meta(bot))
