@@ -11,7 +11,7 @@ import urllib.parse
 import copy
 import unicodedata
 import inspect
-import weather
+
 
 class Meta:
     """Meta Commands"""
