@@ -166,7 +166,29 @@ class Info:
         '''Get user info for yourself or someone in the guild'''
         if user is None:
             user = ctx.author
-        color = discord.Color.green()
+		if user.game is None or user.game.url is None:
+	    	if str(user.status) == "online":
+	    	status_color = embed_color_success
+	    	status_name = "Online"
+		elif str(user.status) == "idle":
+	    	status_color = embed_color_attention
+	    	status_name = "Away / Idle"
+		elif str(user.status) == "dnd":
+			status_color = embed_color_error
+			status_name = "Do Not Disturb"
+		elif str(user.status) == "offline" or str(user.status) == "invisible":
+			status_color = 0x000000
+			status_name = "Offline"
+		else:
+	    	status_color = 0x593695
+	    	status_name = "Streaming"
+		if user.game is None:
+			activity = f'**Doing**: Absolutely Nothing!'
+		elif user.game.url is None:
+			activity = f'**Playing**: {member.game}'
+		else:
+			activity = f'**Streaming**: [{member.game}]({member.game.url})'
+        color = ctx.author.color
         guild = ctx.message.guild
         roles = sorted(user.roles, key=lambda r: r.position)
         rolenames = ', '.join([r.name for r in roles if r != '@everyone']) or 'None'
@@ -179,21 +201,21 @@ class Info:
             avi = 'https://cdn.discordapp.com/avatars/' + user.avatar_url[35:-10]
         else:
             avi = user.avatar_url
-
+	
         
         time = ctx.message.created_at
-        desc = f'{user.name} is currently in {user.status} mode.'
+        desc = f'{user.name} is currently in {status_name} mode.'
         member_number = sorted(guild.members, key=lambda m: m.joined_at).index(user) + 1
         em = discord.Embed(color=color, description=desc, timestamp=time)
-        em.add_field(name=f'{self.bot.get_emoji(430850541959118880)} Username', value=f'{user.name}#{user.discriminator}')
-        em.add_field(name=f'{self.bot.get_emoji(450882580716453888)} User ID', value= user.id)
-        em.add_field(name=f'{self.bot.get_emoji(450867126639788038)} Servers Shared', value=f'{shared}')
-        em.add_field(name=f'{self.bot.get_emoji(433736508038578179)} Highest Role', value=highrole)
-        
-        em.add_field(name=f'{self.bot.get_emoji(450878488736432128)} Account Created At', value = user.created_at.__format__('Date: **%d/%b/%Y**\nTime: **%H:%M:%S**'))
-        em.add_field(name=f'{self.bot.get_emoji(432191587850780682)} Member Number', value=member_number)
-        em.add_field(name=f'{self.bot.get_emoji(393514807371890688)} Joined At', value=user.joined_at.__format__('%d/%b/%Y at %H:%M:%S'))
-        em.add_field(name=f'{self.bot.get_emoji(449683164110127104)} Roles', value=rolenames)
+        em.add_field(name=f'Username', value=f'{user.name}#{user.discriminator}')
+        em.add_field(name=f'User ID', value= user.id)
+        em.add_field(name=f'Servers Shared', value=f'{shared}')
+        em.add_field(name=f'Highest Role', value=highrole)
+        em.add_field(name='Activity', value=activity
+        em.add_field(name=f'Account Created At', value = user.created_at.__format__('Date: **%d/%b/%Y**\nTime: **%H:%M:%S**'))
+        em.add_field(name=f'Member Number', value=member_number)
+        em.add_field(name=f'Joined At', value=user.joined_at.__format__('%d/%b/%Y at %H:%M:%S'))
+        em.add_field(name=f'Roles', value=rolenames)
         em.set_footer(text = f"Member since: {user.joined_at.__format__('%d/%b/%Y at %H:%M:%S')}")
         em.set_thumbnail(url=avi or None)
         await ctx.send(embed=em)
