@@ -8,6 +8,9 @@ import traceback
 import sys
 import aiohttp
 import urllib.parse
+import copy
+import unicodedata
+import inspect
 
 class Meta:
     """Meta Commands"""
