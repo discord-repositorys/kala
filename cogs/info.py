@@ -15,11 +15,7 @@ class Info:
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.command(aliases=['inv'])
-    async def invite(self, ctx):
-        """Invite the bot."""
-        await ctx.send("https://discordapp.com/api/oauth2/authorize?client_id=450419305671032832&permissions=1479866582&scope=bot")
-
+    
 
     @commands.command(aliases=['si', 'sinfo'])
     async def serverinfo(self, ctx):
