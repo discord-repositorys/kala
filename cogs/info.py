@@ -137,7 +137,7 @@ class Info:
             # No Icon
             server_embed.set_thumbnail(url=ctx.author.default_avatar_url)
         server_embed.set_footer(text="Server ID: {}".format(guild.id))
-	await ctx.channel.send(embed=server_embed)
+        await ctx.channel.send(embed=server_embed)
 
     @commands.command(aliases=['ui', 'user'])
     async def userinfo(self, ctx, user: discord.Member = None):
