@@ -67,7 +67,7 @@ class Meta:
             members = "```{}```".format(", ".join(members))
         await ctx.send(members)
         
-   def _get_output(self, w_text):
+     def _get_output(self, w_text):
 		if "tornado" in w_text.lower():
 			return "🌪️ "+w_text
 		if any(x in w_text.lower() for x in ["hurricane", "tropical"]):
