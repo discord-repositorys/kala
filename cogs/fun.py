@@ -91,7 +91,7 @@ class Fun:
         days, remainder2 = divmod(remainder, 86400)
         hours, remainder3 = divmod(remainder2, 3600)
         minutes, seconds = divmod(remainder3, 60)
-        embed = discord.Embed(color=0x10a542)
+        embed = discord.Embed(color=ctx.author.color)
         embed.add_field(name=":gift::christmas_tree::santa:Time left until Christmas:santa::christmas_tree::gift:", value=f"{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.")
         await ctx.send(embed=embed)
 
@@ -107,7 +107,7 @@ class Fun:
         days, remainder2 = divmod(remainder, 84000)
         hours, remainder3 = divmod(remainder2, 3600)
         minutes, seconds = divmod(remainder3, 60)
-        embed = discord.Embed(color=discord.Color.orange())
+        embed = discord.Embed(color=ctx.author.color)
         embed.add_field(name=":jack_o_lantern:Time left until Halloween:jack_o_lantern:", value=f'{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.')
         await ctx.send(embed=embed)
 
@@ -122,7 +122,7 @@ class Fun:
         days, remainder2 = divmod(remainder, 84000)
         hours, remainder3 = divmod(remainder2, 3600)
         minutes, seconds = divmod(remainder3, 60)
-        embed = discord.Embed(color=discord.Color.red())
+        embed = discord.Embed(color=ctx.author.color)
         embed.add_field(name=f":confetti_ball:{self.bot.get_emoji(450881603149889539)}Time left until New Year{self.bot.get_emoji(450881603149889539)}:confetti_ball:", value=f'{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.')
         await ctx.send(embed=embed)
 
@@ -137,7 +137,7 @@ class Fun:
         days, remainder2 = divmod(remainder, 84000)
         hours, remainder3 = divmod(remainder2, 3600)
         minutes, seconds = divmod(remainder3, 60)
-        embed = discord.Embed(color=discord.Color.red())
+        embed = discord.Embed(color=ctx.author.color)
         embed.add_field(name=f":confetti_ball::cake::birthday:Time left until BloodyPikachu's BDAY:cake::birthday::confetti_ball:", value=f'{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.')
         await ctx.send(embed=embed)
 	   
