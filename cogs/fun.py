@@ -28,7 +28,7 @@ class Fun:
 
     @commands.command(aliases=['joke'])
     async def yomamma(self, ctx):
-      async with aiohttp.Client.Session() as sesssion:
+      async with aiohttp.ClientSession() as sesssion:
         async with session.get('http://api.yomamma.info') as resp:
           dadt = await resp.json(content_type=None)
       await ctx.send(data['joke'])
