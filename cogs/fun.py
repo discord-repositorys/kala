@@ -29,6 +29,7 @@ class Fun:
     
 	@commands.command(aliases=['wtp', 'wdp'])
 	async def whosthatpokemon(self, ctx):
+		
   	  num = random.randint(1, 926)
   	  async with aiohttp.ClientSession().get9f'https://pokeapi.co/api/v2/pokemon-form/{num}/') as resp:
     	    data = await resp.json()
