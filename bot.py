@@ -236,7 +236,7 @@ async def ping(ctx):
     msg = await ctx.send(embed=e)
     em = discord.Embed(color=color, title='Ping! Bot Latency is: ')
     em.description = f"{bot.latency * 1000:.4f} ms"
-    em.set_thumbnail(url="https://giphy.com/gifs/cat-animal-ping-pong-fvA1ieS8rEV8Y")
+    em.set_thumbnail(url="https://www.google.com/imgres?imgurl=http%3A%2F%2Fstatic.pong.com%2Fpins%2F2013%2F05%2Fg4tv-pong-flash-games-flash-games-break-most-addicting-flash_100857_D.jpg&imgrefurl=http%3A%2F%2Fwww.pong.com%2F&docid=r3uh_sUQeEOy1M&tbnid=cOAoG7-c6iUMQM%3A&vet=10ahUKEwjGgLug-KzbAhWppFkKHdtVAlwQMwhqKAAwAA..i&w=582&h=373&client=ubuntu&bih=951&biw=927&q=pong&ved=0ahUKEwjGgLug-KzbAhWppFkKHdtVAlwQMwhqKAAwAA&iact=mrc&uact=8#h=373&imgdii=vTA5ueEcweqlfM:&vet=10ahUKEwjGgLug-KzbAhWppFkKHdtVAlwQMwhqKAAwAA..i&w=582")
     await msg.edit(embed=em)
     
 @bot.command()
