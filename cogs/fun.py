@@ -43,14 +43,7 @@ class Fun:
       else:
         await ctx.send(f'Wrong! That Pokemon is: {data["name"]}!')
 
-    @commands.command(aliases=['csay', 'cow'])
-    async def cowsay(self, ctx, *, message):
-      async with aiohttp.ClientSession().post('http://cowsay.morecode.org/say', params={'message':message, 'format': 'text'}) as resp:
-        data = await resp.text()
-    try:
-      await ctx.send(f'```{data}```')
-    except Exception as e:
-      await ctx.send(f'An error occured with the cowsay api.\nDetails:\n```py\n{e}```')
+    
 	
     @commands.command()
     async def emojify(self, ctx, *, text: str):
