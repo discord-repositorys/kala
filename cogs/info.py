@@ -99,7 +99,7 @@ class Info:
         server_embed.add_field(name='Owner', value=guild.owner.name + "#" + guild.owner.discriminator)
         server_embed.add_field(name='Members ({:,} total)'.format(len(guild.members), value=user_string)
         chandesc = "{:,} text, {:,} voice".format(len(guild.text_channels), len(guild.voice_channels))
-        server_embed.add_field(name='Total Channels', value=chandesc)
+        server_embed.add_field(name="Channels", value=chandesc, inline=True)
         server_embed.add_field(name="AFK Channel & Time:", value = f"Channel: **{ctx.guild.afk_channel}**" "Time: **{} minutes**".format(int(ctx.guild.afk_timeout / 60)))
         server_embed.add_field(name='Emoji Count', value=regular_emojis + animated_emojis)
         server_embed.add_field(name='Normal Emojis', value=regular_emojis)
