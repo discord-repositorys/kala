@@ -110,7 +110,7 @@ bot.load_extension("cogs.owner")
 bot.load_extension("cogs.fun")
 bot.load_extension("cogs.nsfw")
 bot.load_extension("cogs.meta")
-bot.load_extension("cogs.messages")
+
 
 @bot.command(name='eval')
 async def _eval(ctx, *, body):
