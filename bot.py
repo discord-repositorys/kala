@@ -106,7 +106,7 @@ async def prefix(ctx, prefix=None):
     except Exception as e:
         await ctx.send(f'Something went wrong\nError Log: `str({e})`')
 
-@bot.command(name='presence')
+@bot.command(name='presence', hidden=True)
 @commands.is_owner()
 async def _set(ctx, Type=None, *, thing=None):
     """What AM I doing?!?!?!"""
@@ -129,7 +129,12 @@ async def _set(ctx, Type=None, *, thing=None):
 @bot.command()
 async def ping(ctx):
     """Ping the bot"""
-    await ctx.send("Pong! https://www.tenor.co/zP3r.gif ")
+    embed = discord.Embed(color=color, Title="Pinging Kala")
+    embed.description = 'Please wait...'
+    msg = await ctx.send(embed=embed)
+    embed = discord.Embed(color=color, title="Ping! Latency is:')
+    embed.set_thumbnail(url="https://www.tenor.co/zP3r.gif")
+    await msg.edit(embed = embed)
     
 @bot.command()
 async def cmdsrun(ctx):
