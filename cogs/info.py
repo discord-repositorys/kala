@@ -17,11 +17,12 @@ class Info:
     
     
 
-    @commands.command(aliases=['si', 'sinfo'])
-    async def serverinfo(self, ctx):
-        """Get some Server info!"""
+    @commands.command(pass_context=True)
+    async def serverinfo(self, ctx, *, guild_name = None):
+        """Lists some info about the current or passed server."""
+        
+        # Check if we passed another guild
         guild = None
-	
         if guild_name == None:
             guild = ctx.guild
         else:
@@ -40,9 +41,11 @@ class Info:
         server_embed = discord.Embed(color=ctx.author.color)
         server_embed.title = guild.name
         
+        # Get localized user time
+        local_time = UserTime.getUserTime(ctx.author, self.settings, guild.created_at)
+        time_str = "{} {}".format(local_time['time'], local_time['zone'])
         
-        
-        server_embed.description = "Some server stats"
+        server_embed.description = "Created at {}".format(time_str)
         online_members = 0
         bot_member     = 0
         bot_online     = 0
@@ -134,8 +137,7 @@ class Info:
             # No Icon
             server_embed.set_thumbnail(url=ctx.author.default_avatar_url)
         server_embed.set_footer(text="Server ID: {}".format(guild.id))
-        await ctx.channel.send(embed=server_embed)
-
+	await ctx.channel.send(embed=server_embed)
 
     @commands.command(aliases=['ui', 'user'])
     async def userinfo(self, ctx, user: discord.Member = None):
