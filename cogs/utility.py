@@ -276,6 +276,33 @@ class Utility:
             await ctx.send(embed=e)
         except:
             await ctx.send("The location is invalid!")
+            
+    @commands.command()
+	async def weather(self, ctx, *, city: str):
+         settings = {"APPID": 'ab1962b0bdb0f00d417974d705b86595'}
+         data = weather.get_current('{}'.format(city), units='metric', **settings)
+         data2 = weather.get_current(city, units='standard', **settings)
+         keys = ['main.temp', 'main.humidity', 'coord.lon', 'coord.lat']
+         x = data.get_many(keys)
+         loc = data('name')
+         country = data('sys.country')
+         lon = data('coord.lon')
+         lat = data('coord.lat')
+         temp = data('main.temp')
+         temp2 = temp * 9/5 + 32
+         high = data('main.temp_max')
+         low = data('main.temp_min')
+         high2 = high * 9/5 + 32
+         low2 = low * 9/5 + 32
+         embed = discord.Embed(title='{}, {}'.format(loc, country), color=0x00FF00)
+         embed.add_field(name='Absolute Location', value='Longitude, Latitude\n{}, {}'.format(lon, lat))
+         embed.add_field(name='Temperature', value='{}F, {}C'.format(temp2, temp))
+         embed.add_field(name='Humidity', value='{}%'.format(data('main.humidity')))
+         embed.add_field(name='Wind Speed', value='{}m/s'.format(data('wind.speed')))       
+         embed.add_field(name='Low and High Temp', value='{}F - {}F\n{}C - {}C'.format(low2, high2, low, high))
+         embed.set_footer(text='Weather Data from OpenWeatherMap.org')
+         embed.set_thumbnail(url='https://cdn4.iconfinder.com/data/icons/cloud-46/32/cloud_weather_clean_clear_heaven_paradise-512.png')
+        await ctx.send(embed=embed)
 
     @commands.group(invoke_without_command=True)
     async def role(self, ctx, userid, *args):
