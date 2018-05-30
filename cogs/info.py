@@ -166,28 +166,33 @@ class Info:
         '''Get user info for yourself or someone in the guild'''
         if user is None:
             user = ctx.author
-	if user.game is None or user.game.url is None:
-	    if str(user.status) == "online":
-	    status_color = embed_color_success
-	    status_name = "Online"
-	elif str(user.status) == "idle":
-	    status_color = embed_color_attention
-	    status_name = "Away / Idle"
-	elif str(user.status) == "dnd":
-	    status_color = embed_color_error
-	    status_name = "Do Not Disturb"
-	elif str(user.status) == "offline" or str(user.status) == "invisible":
-	    status_color = 0x000000
-	    status_name = "Offline"
-	else:
-	    status_color = 0x593695
-	    status_name = "Streaming"
-	if user.game is None:
-	    activity = f'**Doing**: Absolutely Nothing!'
-	elif user.game.url is None:
-	    activity = f'**Playing**: {member.game}'
-	else:
-	    activity = f'**Streaming**: [{member.game}]({member.game.url})'
+	if member.game is None or member.game.url is None:
+            if str(member.status) == "online":
+                status_colour = embed_color_succes
+                status_name = "Online"
+            elif str(member.status) == "idle":
+                status_colour = embed_color_attention
+                status_name = "Away / Idle"
+            elif str(member.status) == "dnd":
+                status_colour = embed_color_error
+                status_name = "Do Not Disturb"
+            elif str(member.status) == "offline" or str(member.status) == "invisible":
+                status_colour = 0x000000
+                status_name = "Offline"
+            else:
+                status_colour = member.colour
+                status_name = "N/A"
+        else:
+            status_colour = 0x593695
+            status_name = "Streaming"
+
+        if member.game is None:
+            activity = f"**Doing**: Completely nothing!"
+        elif member.game.url is None:
+            activity = f"**Playing**: {member.game}"
+        else:
+            activity = f"**Streaming**: [{member.game}]({member.game.url})"
+
         color = ctx.author.color
         guild = ctx.message.guild
         roles = sorted(user.roles, key=lambda r: r.position)
