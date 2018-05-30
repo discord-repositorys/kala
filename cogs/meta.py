@@ -65,7 +65,15 @@ class Meta:
             members = "```{}```".format(", ".join(members))
         await ctx.send(members)
         
-    
+    @commands.command()
+    async def emoteinfo(self, ctx, *, emote:discord.Emoji):
+        """Gets information on a custom emote (Only works for servers the bot is on)"""
+        fields = {Language.get("information.name", ctx):emote.name, Language.get("information.id", ctx):emote.id, Language.get("information.server_origin", ctx):emote.guild.name, Language.get("information.created_on", ctx):format_time(emote.created_at), Language.get("information.colons_required", ctx):emote.require_colons, Language.get("information.managed_by_twitch", ctx):emote.managed}
+        embed = make_list_embed(fields)
+        embed.title = ":{}:".format(emote.name)
+        embed.color = 0xFF0000
+        embed.set_thumbnail(url=emote.url)
+        await ctx.send(embed=embed)
         
 def setup(bot):
     bot.add_cog(Meta(bot))
