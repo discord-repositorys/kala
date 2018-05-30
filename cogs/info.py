@@ -171,6 +171,7 @@ class Info:
             # No Icon
             server_embed.set_thumbnail(url=ctx.author.default_avatar_url)
         server_embed.set_footer(text="Server ID: {}".format(guild.id))
+        
         await ctx.send(embed=server_embed)
 
 
