@@ -76,9 +76,9 @@ class Meta:
             starttime = time.time()
             requests.get(url, timeout=3)
             ping = Language.get("information.ping_time", ctx) % (time.time() - starttime)
-            await ctx.send(Language.get("information.online_ping", ctx).format(url, ping))
+            await ctx.send("The website is currently up and running!")
         except:
-            await ctx.send(Language.get("information.offline_ping", ctx).format(url))
+            await ctx.send("The website is currently offline and not responding")
         
 def setup(bot):
     bot.add_cog(Meta(bot))
