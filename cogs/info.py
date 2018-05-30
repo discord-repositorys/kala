@@ -69,7 +69,7 @@ class Info:
                 b_string,
                 round((bot_online/bot_member)*100, 2)
         )
-	try:
+        try:
             ban_count = len(await guild.bans())
         except discord.Forbidden:
             ban_count = "Kala Lacks the `ban members` permission. (In order to retrieve bans)"
