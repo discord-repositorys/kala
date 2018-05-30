@@ -167,27 +167,27 @@ class Info:
         if user is None:
             user = ctx.author
 		if user.game is None or user.game.url is None:
-	    	if str(user.status) == "online":
-	    	status_color = embed_color_success
-	    	status_name = "Online"
+	    	    if str(user.status) == "online":
+	    	    status_color = embed_color_success
+	    	    status_name = "Online"
 		elif str(user.status) == "idle":
-	    	status_color = embed_color_attention
-	    	status_name = "Away / Idle"
+	    	    status_color = embed_color_attention
+	    	    status_name = "Away / Idle"
 		elif str(user.status) == "dnd":
-			status_color = embed_color_error
-			status_name = "Do Not Disturb"
+		    status_color = embed_color_error
+		    status_name = "Do Not Disturb"
 		elif str(user.status) == "offline" or str(user.status) == "invisible":
-			status_color = 0x000000
-			status_name = "Offline"
+		    status_color = 0x000000
+		    status_name = "Offline"
 		else:
-	    	status_color = 0x593695
-	    	status_name = "Streaming"
+	    	    status_color = 0x593695
+	    	    status_name = "Streaming"
 		if user.game is None:
-			activity = f'**Doing**: Absolutely Nothing!'
+		    activity = f'**Doing**: Absolutely Nothing!'
 		elif user.game.url is None:
-			activity = f'**Playing**: {member.game}'
+		    activity = f'**Playing**: {member.game}'
 		else:
-			activity = f'**Streaming**: [{member.game}]({member.game.url})'
+		    activity = f'**Streaming**: [{member.game}]({member.game.url})'
         color = ctx.author.color
         guild = ctx.message.guild
         roles = sorted(user.roles, key=lambda r: r.position)
