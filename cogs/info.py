@@ -20,7 +20,49 @@ class Info:
     @commands.command(aliases=['si', 'sinfo'])
     async def serverinfo(self, ctx):
         """Get some Server info!"""
-        guild = ctx.guild
+        guild = None
+        if guild_name == None:
+            guild = ctx.guild
+        else:
+            for g in self.bot.guilds:
+                if g.name.lower() == guild_name.lower():
+                    guild = g
+                    break
+                if str(g.id) == str(guild_name):
+                    guild = g
+                    break
+        if guild == None:
+            # We didn't find it
+            await ctx.send("I couldn't find that guild...")
+            return
+        
+        server_embed = discord.Embed(color=ctx.author.color)
+        server_embed.title = guild.name
+        server_embed.description = "Some server stats"
+        online_members = 0
+        bot_member     = 0
+        bot_online     = 0
+        for member in guild.members:
+            if member.bot:
+                bot_member += 1
+                if not member.status == discord.Status.offline:
+                        bot_online += 1
+                continue
+            if not member.status == discord.Status.offline:
+                online_members += 1
+        # bot_percent = "{:,g}%".format((bot_member/len(guild.members))*100)
+        user_string = "{:,}/{:,} online ({:,g}%)".format(
+                online_members,
+                len(guild.members) - bot_member,
+                round((online_members/(len(guild.members) - bot_member) * 100), 2)
+        )
+        b_string = "bot" if bot_member == 1 else "bots"
+        user_string += "\n{:,}/{:,} {} online ({:,g}%)".format(
+                bot_online,
+                bot_member,
+                b_string,
+                round((bot_online/bot_member)*100, 2)
+        )
         guild_age = (ctx.message.created_at - guild.created_at).days
         created_at = f"Server created on {guild.created_at.strftime('%b %d %Y at %H:%M')}. That\'s over {guild_age} days ago!"
         color = discord.Color.green()
@@ -53,29 +95,85 @@ class Info:
         regular_emojis = len([x for x in guild.emojis if not x.animated])
         animated_emojis = len([x for x in guild.emojis if x.animated])
 
-        embed = discord.Embed(title=guild.name, color=color)
-        embed.set_thumbnail(url=guild.icon_url)
-        embed.add_field(name=f'{self.bot.get_emoji(441337849933987841)} Server ID', value=str(guild.id))
-        embed.add_field(name=f'{self.bot.get_emoji(441337821941202944)} Owner', value=str(guild.owner))
-        embed.add_field(name=f'{self.bot.get_emoji(450791226459815936)} Total Members', value=str(guild.member_count))
-        embed.add_field(name=f'{self.bot.get_emoji(446784125022633994)} Non-Bots', value=len([x for x in ctx.guild.members if not x.bot]))
-        embed.add_field(name=f'{self.bot.get_emoji(441337812256817153)} Bots', value=len([x for x in ctx.guild.members if x.bot]))
-        embed.add_field(name=f'{self.bot.get_emoji(441352932034740225)} Channel Categories', value=len(guild.categories))
-        embed.add_field(name=f'{self.bot.get_emoji(441337844322009119)} Total Channels', value=len(guild.channels))
-        embed.add_field(name=f'{self.bot.get_emoji(450809901007110145)} Text Channels', value=textchannels)
-        embed.add_field(name=f'{self.bot.get_emoji(450810384954425355)} Voice Channels', value=voicechannels)
-        embed.add_field(name=f"{self.bot.get_emoji(450878790491701249)} AFK Channel & Time:", value = f"Channel: **{ctx.guild.afk_channel}**" "Time: **{} minutes**".format(int(ctx.guild.afk_timeout / 60)))
-        embed.add_field(name=f'{self.bot.get_emoji(432191587850780682)} Emoji Count', value=regular_emojis + animated_emojis)
-        embed.add_field(name=f'{self.bot.get_emoji(430340787121815572)} Normal Emojis', value=regular_emojis)
-        embed.add_field(name=f'{self.bot.get_emoji(430853715059277863)} Animated Emojis', value=animated_emojis)
-        embed.add_field(name=f'{self.bot.get_emoji(450816002331246632)} Server Region', value=str(guild.region))
-        embed.add_field(name=f'{self.bot.get_emoji(450816423766523931)} Role Count', value=str(role_length))
-        embed.add_field(name=f'{self.bot.get_emoji(450819025958600706)} Server Verification Level', value=verification_levels[guild.verification_level])
-        embed.add_field(name=f'{self.bot.get_emoji(422810427311915009)} Explicit Content Filter', value=content_filter[guild.explicit_content_filter])
-        embed.add_field(name=f'{self.bot.get_emoji(450819866598047755)} 2FA Requirement', value=mfa_levels[guild.mfa_level])
-        embed.add_field(name=f'{self.bot.get_emoji(450820345000099840)} Ban Count', value=ban_count)
-        embed.set_footer(text='Created - %s' % time)
-        await ctx.send(embed=embed)
+        
+        server_embed.set_thumbnail(url=guild.icon_url)
+        server_embed.add_field(name=f'Server ID', value=str(guild.id))
+        server_embed.add_field(name=f'Owner', value=guild.owner.name + "#" + guild.owner.discriminator)
+        server_embed.add_field(name='Members ({:,} total)'.format(len(guild.members), value=user_string)
+        server_embed.add_field(name=f'Non-Bots', value=len([x for x in ctx.guild.members if not x.bot]))
+        server_embed.add_field(name=f'Bots', value=len([x for x in ctx.guild.members if x.bot]))
+        server_embed.add_field(name=f'Channel Categories', value=len(guild.categories))
+        chandesc = "{;,} text, {;,} voice".format(len(guild..text_channels), len(guild.voice_channels)
+        server_embed.add_field(name=f'Total Channels', value=chandesc)
+        server_embed.add_field(name=f"AFK Channel & Time:", value = f"Channel: **{ctx.guild.afk_channel}**" "Time: **{} minutes**".format(int(ctx.guild.afk_timeout / 60)))
+        server_embed.add_field(name=f'Emoji Count', value=regular_emojis + animated_emojis)
+        server_embed.add_field(name=f'Normal Emojis', value=regular_emojis)
+        server_embed.add_field(name=f'Animated Emojis', value=animated_emojis)
+        server_embed.add_field(name=f'Server Region', value=str(guild.region))
+        server_embed.add_field(name='Roles', value=str(len(guild.roles))
+        server_embed.add_field(name='Default Role', value=guild.default_role)
+        server_embed.add_field(name='Considered Large', value=guild.large)                
+        server_embed.add_field(name=f'Server Verification Level', value=verification_levels[guild.verification_level])
+        server_embed.add_field(name=f'Explicit Content Filter', value=content_filter[guild.explicit_content_filter])
+        server_embed.add_field(name=f'2FA Requirement', value=mfa_levels[guild.mfa_level])
+        server_embed.add_field(name=f'Ban Count', value=ban_count)
+        server_embed.set_footer(text='Created - %s' % time)
+        joinedList = []
+        popList    = []
+        for g in self.bot.guilds:
+            joinedList.append({ 'ID' : g.id, 'Joined' : g.me.joined_at })
+            popList.append({ 'ID' : g.id, 'Population' : len(g.members) })
+        
+        # sort the guilds by join date
+        joinedList = sorted(joinedList, key=lambda x:x['Joined'])
+        popList = sorted(popList, key=lambda x:x['Population'], reverse=True)
+        
+        check_item = { "ID" : guild.id, "Joined" : guild.me.joined_at }
+        total = len(joinedList)
+        position = joinedList.index(check_item) + 1
+        server_embed.add_field(name="Join Position", value="{:,} of {:,}".format(position, total), inline=True)
+        
+        # Get our population position
+        check_item = { "ID" : guild.id, "Population" : len(guild.members) }
+        total = len(popList)
+        position = popList.index(check_item) + 1
+        server_embed.add_field(name="Population Rank", value="{:,} of {:,}".format(position, total), inline=True)
+        
+        emojitext = ""
+        emojicount = 0
+        for emoji in guild.emojis:
+            if emoji.animated:
+                emojiMention = "<a:"+emoji.name+":"+str(emoji.id)+">"
+            else:
+                emojiMention = "<:"+emoji.name+":"+str(emoji.id)+">"
+            test = emojitext + emojiMention
+            if len(test) > 1024:
+                # TOOO BIIIIIIIIG
+                emojicount += 1
+                if emojicount == 1:
+                    ename = "Emojis ({:,} total)".format(len(guild.emojis))
+                else:
+                    ename = "Emojis (Continued)"
+                server_embed.add_field(name=ename, value=emojitext, inline=True)
+                emojitext=emojiMention
+            else:
+                emojitext = emojitext + emojiMention
+
+        if len(emojitext):
+            if emojicount == 0:
+                emojiname = "Emojis ({} total)".format(len(guild.emojis))
+            else:
+                emojiname = "Emojis (Continued)"
+            server_embed.add_field(name=emojiname, value=emojitext, inline=True)
+
+
+        if len(guild.icon_url):
+            server_embed.set_thumbnail(url=guild.icon_url)
+        else:
+            # No Icon
+            server_embed.set_thumbnail(url=ctx.author.default_avatar_url)
+        server_embed.set_footer(text="Server ID: {}".format(guild.id))
+        await ctx.send(embed=server_embed)
 
 
     @commands.command(aliases=['ui', 'user'])
@@ -140,7 +238,7 @@ class Info:
         embed.add_field(name=f"{self.bot.get_emoji(450791022541406209)} Servers", value=f"{len(self.bot.guilds)}")
         embed.add_field(name=f'{self.bot.get_emoji(450791226459815936)} Users', value=member)
         embed.add_field(name=f'{self.bot.get_emoji(412747044403544074)} Ping', value=f'{self.bot.latency * 100:.4f} ms')
-        embed.add_field(name=f'{self.bot.get_emoji(439557226969956363)} Version', value='0.0.1')
+        embed.add_field(name=f'{self.bot.get_emoji(439557226969956363)} Version', value='0.0.2')
         embed.add_field(name=f'{self.bot.get_emoji(424265677642268676)} Start Date', value="5/27/18")
         embed.add_field(name=f'{self.bot.get_emoji(422527903658672148)} Coding Language', value=f'{self.bot.get_emoji(418934774623764491)} Python, discord.py rewrite')
         await ctx.send(embed=embed)
