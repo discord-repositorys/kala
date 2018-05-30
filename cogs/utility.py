@@ -274,7 +274,7 @@ class Utility:
         low = data('main.temp_min')
         high2 = high * 9/5 + 32
         low2 = low * 9/5 + 32
-        embed = discord.Embed(title='{}, {}'.format(loc, country), color=0x00FF00)
+        embed = discord.Embed(title='{}, {}'.format(loc, country), color=ctx.author.color)
         embed.add_field(name='Absolute Location', value='Longitude, Latitude\n{}, {}'.format(lon, lat))
         embed.add_field(name='Temperature', value='{}F, {}C'.format(temp2, temp))
         embed.add_field(name='Humidity', value='{}%'.format(data('main.humidity')))
