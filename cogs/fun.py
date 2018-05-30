@@ -125,7 +125,34 @@ class Fun:
         embed.add_field(name=f":confetti_ball:{self.bot.get_emoji(450881603149889539)}Time left until New Year{self.bot.get_emoji(450881603149889539)}:confetti_ball:", value=f'{weeks} weeks, {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.')
         await ctx.send(embed=embed)
 
-    
+    @commands.command(pass_context=True, no_pm=True)
+	async def ascii(self, ctx, *, text : str = None):
+		"""Beautify some text (font list at http://artii.herokuapp.com/fonts_list)."""
+
+		if text == None:
+			await ctx.channel.send('Usage: `{}ascii [font (optional)] [text]`\n(font list at http://artii.herokuapp.com/fonts_list)'.format(ctx.prefix))
+			return
+
+		# Get list of fonts
+		fonturl = "http://artii.herokuapp.com/fonts_list"
+		response = await DL.async_text(fonturl)
+		fonts = response.split()
+
+		font = None
+		# Split text by space - and see if the first word is a font
+		parts = text.split()
+		if len(parts) > 1:
+			# We have enough entries for a font
+			if parts[0] in fonts:
+				# We got a font!
+				font = parts[0]
+				text = ' '.join(parts[1:])
+	
+		url = "http://artii.herokuapp.com/make?{}".format(urllib.parse.urlencode({'text':text}))
+		if font:
+			url += '&font={}'.format(font)
+		response = await DL.async_text(url)
+        await ctx.channel.send("```Markup\n{}```".format(response))
     
 
 def setup(bot):
