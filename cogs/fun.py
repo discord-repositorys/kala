@@ -20,13 +20,10 @@ class Fun:
         self.bot = bot
 	
     @commands.command()
-    async def cat(self, ctx):
-		async with aiohttp.ClientSession() as session:
-			async with session.get('http://random.cat/meow') as resp:
-				data = await resp.json()
-		embed = discord.Embed(color=discord.Color.blue())
-		embed.set_image(url=data['file'])
-		await ctx.send(embed=embed)
+	async def roast(self, ctx, user: discord.Member = None):
+		async with aiohttp.ClientSession().get('https://insult.mattbas.org/api/insult.json') as resp:
+			data = await resp.json(content_type=None)
+        await ctx.send(data['insult'])
 
 
     @commands.command()
