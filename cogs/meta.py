@@ -91,7 +91,7 @@ class Meta:
         
         
         
-        server_embed.description = "Created at {}".format(time_str)
+        server_embed.description = "Some server stats"
         online_members = 0
         bot_member     = 0
         bot_online     = 0
