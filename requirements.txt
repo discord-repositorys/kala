@@ -1,5 +1,4 @@
 aiohttp
-UserTime
 colorthief
 asyncio
 async-timeout
