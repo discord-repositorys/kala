@@ -257,7 +257,7 @@ class Utility:
         await ctx.send(embed=em)
             
     @commands.command()
-	async def weather(self, ctx, *, city: str):
+    async def weather(self, ctx, *, city: str):
         settings = {"APPID": 'ab1962b0bdb0f00d417974d705b86595'}
         data = weather.get_current('{}'.format(city), units='metric', **settings)
         data2 = weather.get_current(city, units='standard', **settings)
