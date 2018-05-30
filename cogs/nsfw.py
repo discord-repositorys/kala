@@ -37,7 +37,26 @@ class Nsfw:
         await ctx.send(embed=em)
         
         
-        
+    @commands.command(hidden=True)
+    @commands.cooldown(1, 5, commands.BucketType.user)
+    async def butts(self, ctx):
+        '''Get butts off the internet'''
+        if not ctx.channel.is_nsfw():
+          await ctx.send("You tried to put nsfw in a non-nsfw channel.")
+          return
+        """Random"""
+        api_base = 'http://api.obutts.ru/butts/'
+        number = random.randint(1, 10303)
+        url_api = api_base + str(number)
+        async with aiohttp.ClientSession() as session:
+           async with session.get(url_api) as data:
+                data = await data.json()
+                data = data[0]
+        image_url = 'http://media.obutts.ru/' + data['preview']
+        em = discord.Embed(color=0x11f95e)
+        em.set_author(name="Butt Image")
+        em.set_image(url=image_url)
+        await ctx.send(embed=em)
         
 
 
