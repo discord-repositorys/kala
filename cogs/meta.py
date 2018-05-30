@@ -17,7 +17,7 @@ class Meta:
     """Meta Commands"""
     def __init__(self, bot):
         self.bot = bot
-        self.weather = weather.Weather()
+        
         
     client_id = 450419305671032832
         
