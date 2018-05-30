@@ -134,7 +134,7 @@ async def ping(ctx):
     msg = await ctx.send(embed=e)
     em = discord.Embed(color=color, title='Ping! Bot Latency is: ')
     em.description = f"{bot.latency * 1000:.4f} ms"
-    em.set_thumbnail(url="https://www.tenor.co/zP3r.gif")
+    em.set_thumbnail(url="https://giphy.com/gifs/tennis-4IAzyrhy9rkis ")
     await msg.edit(embed=em)
     
 @bot.command()
