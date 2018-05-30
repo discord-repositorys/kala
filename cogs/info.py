@@ -68,9 +68,7 @@ class Info:
         color = discord.Color.green()
         roles = [x.name for x in guild.roles]
         role_length = len(roles)
-        roles = ', '.join(roles)
-        textchannels = len(guild.text_channels)
-        voicechannels = len(guild.voice_channels)
+        roles = ', '.join(roles).
         time = str(guild.created_at.strftime("%b %m, %Y, %A, %I:%M %p"))
         try:
             ban_count = len(await guild.bans())
