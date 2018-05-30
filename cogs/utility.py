@@ -259,7 +259,7 @@ class Utility:
             
     @commands.command()
     async def weather(self, ctx, *, city: str):
-        settings = {"APPID": 'ab1962b0bdb0f00d417974d705b86595'}
+        settings = {"APPID": os.environ['OWM']}
         data = weather.get_current('{}'.format(city), units='metric', **settings)
         data2 = weather.get_current(city, units='standard', **settings)
         keys = ['main.temp', 'main.humidity', 'coord.lon', 'coord.lat']
