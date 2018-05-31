@@ -82,9 +82,10 @@ class Nsfw:
             return await ctx.send("Please don't put nsfw images in a non-nsfw channel. The command has been terminated.")
         if not is_gif:
             async with aiohttp.ClientSession().get('https://nekos.life/api/v2/img/feet') as resp:
+            resp = await resp.json()
         else:
             async with aiohttp.ClientSession().get('https://nekos.life/api/v2/img/feetg') as resp:
-        resp = await resp.json()
+            resp = await resp.json()
         embed = discord.Embed(color=ctx.author.color, title='Here, have some feet.')
         embed.set_author(name=f'Feet requested by: {ctx.author}.', icon_url=ctx.author.avatar_url)
         embed.set_image(url=resp['url'])
