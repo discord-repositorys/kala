@@ -13,6 +13,7 @@ import random
 import inspect
 from motor.motor_asyncio import AsyncIOMotorClient
 import re
+import aiohttp
 
 
 bravo_db = AsyncIOMotorClient(os.environ['DB'])
