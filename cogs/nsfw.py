@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import aiohttp
 import random
+import json
 
 
 
@@ -11,7 +12,6 @@ class Nsfw:
     '''
     def __init__(self, bot):
         self.bot = bot
-        self.bot.session = bot.session
         self.hentai = [
  'feet', 'yuri', 'trap', 'futanari', 'hololewd', 'lewdkemo', 'solog', 'feetg', 'cum', 'erokemo', 'les', 'wallpaper', 'lewdk', 'ngif', 'meow', 'tickle', 'lewd', 'feed', 'eroyuri', 'eron', 'cum_jpg', 'bj', 'nsfw_neko_gif', 'solo', 'kemonomimi', 'nsfw_avatar', 'anal', 'slap', 'hentai', 'avatar', 'erofeet', 'holo', 'keta', 'blowjob', 'pussy', 'tits', 'holoero', 'pussy_jpg', 'pwankg', 'classic', 'femdom', 'neko', 'cuddle', 'erok', 'fox_girl', 'boobs', 'Random_hentai_gif', 'smallboobs']
 
@@ -60,20 +60,35 @@ class Nsfw:
         await ctx.send(embed=em)
         
 
+    #@commands.command(hidden=True)
+    #async def feet(self, ctx, is_gif=None):
+        #"""Gets a random picture of feet. DO NOT USE IF UNDER 18!"""
+        ##if not ctx.channel.nsfw:
+            #return await ctx.send("Please don't put nsfw images in a non-nsfw channel. The command has been terminated.")
+        #if not is_gif:
+            #resp = await self.bot.session.get("https://nekos.life/api/v2/img/feet")
+        #else:
+            #resp = await self.bot.session.get("https://nekos.life/api/v2/img/feetg")
+        #resp = await resp.json()
+        #em = discord.Embed(color=discord.Color(value=0x00ff00), title="Here you go! Enjoy. :eggplant: ")
+        #em.set_author(name=f"Feet requested by: {ctx.author}", icon_url=ctx.author.avatar_url)
+        #em.set_image(url=resp['url'])
+        #await ctx.send(embed=em)  
+        
     @commands.command(hidden=True)
     async def feet(self, ctx, is_gif=None):
         """Gets a random picture of feet. DO NOT USE IF UNDER 18!"""
-        if not ctx.channel.nsfw:
+        if not ctx.channel.is_nsfw():
             return await ctx.send("Please don't put nsfw images in a non-nsfw channel. The command has been terminated.")
         if not is_gif:
-            resp = await self.bot.session.get("https://nekos.life/api/v2/img/feet")
+            resp = async with aiohttp.ClientSession().get('https://nekos.life/api/v2/img/feet')
         else:
-            resp = await self.bot.session.get("https://nekos.life/api/v2/img/feetg")
-        resp = await resp.json()
-        em = discord.Embed(color=discord.Color(value=0x00ff00), title="Here you go! Enjoy. :eggplant: ")
-        em.set_author(name=f"Feet requested by: {ctx.author}", icon_url=ctx.author.avatar_url)
-        em.set_image(url=resp['url'])
-        await ctx.send(embed=em)    
+            resp = async with aiohttp.ClientSession().get('https://nekos.life/api/v2/img/feetg')
+        resp = await resp.json
+        embed = discord.Embed(color=ctx.author.color, title='Here, have some feet.')
+        embed.set_author(name=f'Feet requested by: {ctx.author}.', icon_url=ctx.author.avatar_url)
+        embed.set_image(url=resp['url'])
+        await ctx.send(embed = embed)
         
 
 def setup(bot): 
