@@ -16,7 +16,7 @@ class Owner:
         self.bot = bot
         self.sessions = set()
 
-    @commands.command(aliases=['r', 'reload'], hidden=True)
+    @commands.command(aliases=['r', 'reload'])
     @commands.is_owner()
     async def cog_reload(self, ctx, *, cog: str):
         """Command which Reloads a Module.
@@ -30,7 +30,7 @@ class Owner:
         else:
             await ctx.send(f'{self.bot.get_emoji(450876075161944075)} Success!')
 
-    @commands.command(name='load', hidden=True)
+    @commands.command(name='load')
     @commands.is_owner()
     async def cog_load(self, ctx, *, cog: str):
         """Command which Loads a Module.
@@ -43,7 +43,7 @@ class Owner:
         else:
             await ctx.send(f'{self.bot.get_emoji(450881658271301632)} Success!')
 
-    @commands.command(name='unload', hidden=True)
+    @commands.command(name='unload')
     @commands.is_owner()
     async def cog_unload(self, ctx, *, cog: str):
         """Command which Unloads a Module.
@@ -56,7 +56,7 @@ class Owner:
         else:
             await ctx.send(f'{self.bot.get_emoji(450883247077982219)} Success!')
 
-    @commands.command(aliases=["getservers", "getguild", "getserver"], hidden=True)
+    @commands.command(aliases=["getservers", "getguild", "getserver"])
     @commands.guild_only()
     @commands.is_owner()
     async def getguilds(self, ctx):
@@ -66,7 +66,7 @@ class Owner:
                 embed.add_field(name=self.bot.guilds[i].name, value=self.bot.guilds[i].id, inline=True)
             await ctx.send(embed=embed)
 
-    @commands.command(name="name", hidden=True)
+    @commands.command(name="name")
     @commands.is_owner()
     async def name_change(self, ctx, *, name: str):
         try:
