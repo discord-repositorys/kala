@@ -111,7 +111,6 @@ bot.load_extension("cogs.utility")
 bot.load_extension("cogs.owner")
 bot.load_extension("cogs.fun")
 bot.load_extension("cogs.nsfw")
-bot.load_extension("cogs.meta")
 
 
 @bot.command(name='eval')
