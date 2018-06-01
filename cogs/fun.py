@@ -20,6 +20,10 @@ class Fun:
     def __init__(self, bot):
         self.bot = bot
 	
+	async def on_message(self, ctx, message):
+		if '(╯°□°）╯︵ ┻━┻' in ctx.message:
+			await ctx.send('┬─┬﻿ ノ( ゜-゜ノ)')
+	
     @commands.command()
     async def roast(self, ctx, user: discord.Member = None):
       async with aiohttp.ClientSession().get('https://insult.mattbas.org/api/insult.json') as resp:
