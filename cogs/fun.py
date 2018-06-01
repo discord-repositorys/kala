@@ -21,8 +21,8 @@ class Fun:
         self.bot = bot
 	
     async def on_message(self, ctx, message):
-	if '(╯°□°）╯︵ ┻━┻' in ctx.message:
-	    await ctx.send('┬─┬﻿ ノ( ゜-゜ノ)')
+        if '(╯°□°）╯︵ ┻━┻' in ctx.message:
+            await ctx.send('┬─┬﻿ ノ( ゜-゜ノ)')
 	
     @commands.command()
     async def roast(self, ctx, user: discord.Member = None):
