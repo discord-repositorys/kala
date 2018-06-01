@@ -21,7 +21,7 @@ class Fun:
         self.bot = bot
 	
     async def on_message(ctx, message):
-        if '(╯°□°）╯︵ ┻━┻' in ctx.message:
+        if '(╯°□°）╯︵ ┻━┻' in message.content:
             await ctx.send('┬─┬﻿ ノ( ゜-゜ノ)')
 	
     @commands.command()
