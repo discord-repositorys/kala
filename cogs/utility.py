@@ -277,7 +277,7 @@ class Utility:
         low2 = low * 9/5 + 32
         embed = discord.Embed(title='{}, {}'.format(loc, country), color=ctx.author.color)
         embed.add_field(name='Absolute Location', value='Longitude, Latitude\n{}, {}'.format(lon, lat))
-        embed.add_field(name='Temperature', value=f'{temp2 * 00.1:.4f}F, {temp}C')
+        embed.add_field(name='Temperature', value=f'{temp2 * 1.1:.4f}F, {temp}C')
         embed.add_field(name='Humidity', value='{}%'.format(data('main.humidity')))
         embed.add_field(name='Wind Speed', value='{}m/s'.format(data('wind.speed')))       
         embed.add_field(name='Low Temperature', value='**{}** F\n**{}** C'.format(low2, low))
