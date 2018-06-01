@@ -19,7 +19,6 @@ class Info:
 	
     @commands.command(aliases=['ls'])
     async def largestserver(self, ctx):
-	"""Show the 5 largest servers the bot sees."""
 	servers = sorted(ctx.bot.guilds, key=lambda x: -len(x.members))
 	msg = ""
 	for i in range(0, 10):
