@@ -19,12 +19,12 @@ class Info:
 	
     @commands.command(aliases=['ls'])
     async def largestserver(self, ctx):
-		"""Show the 5 largest servers the bot sees."""
-		servers = sorted(ctx.bot.guilds, key=lambda x: -len(x.members))
-		msg = ""
-		for i in range(0, 10):
-			msg += "{0}: {1} members.\n".format(servers[i].name, len(servers[i].members))
-		await ctx.send(msg)
+	"""Show the 5 largest servers the bot sees."""
+	servers = sorted(ctx.bot.guilds, key=lambda x: -len(x.members))
+	msg = ""
+	for i in range(0, 10):
+		msg += "{0}: {1} members.\n".format(servers[i].name, len(servers[i].members))
+	await ctx.send(msg)
 
     @commands.command(pass_context=True, aliases=['si', 'sinfo'])
     async def serverinfo(self, ctx, *, guild_name = None):
