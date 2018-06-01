@@ -20,7 +20,7 @@ class Fun:
     def __init__(self, bot):
         self.bot = bot
 	
-    async def on_message(self, ctx, message):
+    async def on_message(ctx, message):
         if '(╯°□°）╯︵ ┻━┻' in ctx.message:
             await ctx.send('┬─┬﻿ ノ( ゜-゜ノ)')
 	
