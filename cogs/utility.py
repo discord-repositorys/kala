@@ -115,7 +115,7 @@ class Utility:
 
     @commands.command()
     async def choose(self, ctx, *, args):
-        """Can't choose. Let this bot do it for you. Seperate choices with a comma."""
+        """Can't choose. Let this bot do it for you. Seperate choices with |"""
         lol = self.bot.get_emoji(450878135936876554)
         msg = await ctx.send(lol)
         args = args.split("|")
@@ -277,7 +277,7 @@ class Utility:
         low2 = low * 9/5 + 32
         embed = discord.Embed(title='{}, {}'.format(loc, country), color=ctx.author.color)
         embed.add_field(name='Absolute Location', value='Longitude, Latitude\n{}, {}'.format(lon, lat))
-        embed.add_field(name='Temperature', value=f'{temp2 * 10.0:.4f}F, {temp}C')
+        embed.add_field(name='Temperature', value=f'{temp2 * 1.01:.4f}F, {temp}C')
         embed.add_field(name='Humidity', value='{}%'.format(data('main.humidity')))
         embed.add_field(name='Wind Speed', value='{}m/s'.format(data('wind.speed')))       
         embed.add_field(name='Low Temperature', value='**{}** F\n**{}** C'.format(low2, low))
