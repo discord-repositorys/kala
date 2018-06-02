@@ -30,20 +30,22 @@ class Fun:
 
     @commands.command()
     async def star(self, ctx, *, msg):
-        """Create a star oout of 1-50 character long"""
+        async def star(self, ctx, *, msg):
+        """Create a star out of a string 1-50 characters long."""
         if (len(msg) > 50):
-            await ctx.msg.add_reaction(':EeveeShy:450878135936876554')
-	    return await ctx.send('Must be less than 51 characters long.')
+            return awaitctx.send("String must be less than 26 characters")
         elif (len(msg) == 0):
-	    await ctx.msg.add_reaction(':EeveeShy:450878135936876554')
-	    return await ctx.send('Must be at least 1 character.')
+            return await ctx.send("String must be at least 1 character")
+
         str = '```\n'
-	mid = len(msg) - 1
-	for i in range(len(msg) * 2 - 1):
-	    if (mid == i):
-	        str += msg[::-1] + msg[1:] + '\n'
-	    else:
-	        let = abs(mid - i)
+
+        mid = len(msg) - 1
+
+        for i in range(len(msg) * 2 - 1):
+            if (mid == i):
+                str += msg[::-1] + msg[1:] + "\n"
+            else:
+                let = abs(mid - i)
                 str += " " * (mid - let)
                 str += msg[let]
                 str += " " * (let - 1)
@@ -51,8 +53,9 @@ class Fun:
                 str += " " * (let - 1)
                 str += msg[let]
                 str += "\n"
-	str += '```'
-	await ctx.send(str)
+
+        str += "```"
+await ctx.send(str)
 	
     @commands.command()
     async def roast(self, ctx, user: discord.Member = None):
