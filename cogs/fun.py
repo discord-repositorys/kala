@@ -57,7 +57,7 @@ class Fun:
         await ctx.send(str)
 	
     @commands.command()
-    async def roll(self, ctx, *, num: int=100):
+    async def rollint(self, ctx, *, num: int=100):
         """Random number from 0 to num."""
         if num <= 0:
             return await ctx.send("Try a number greater than 0.")
