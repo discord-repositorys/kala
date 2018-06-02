@@ -46,13 +46,12 @@ class Latency:
         sent_message = await ctx.send(msg_content)
         await task
         rtt_time = datetime.utcnow()
-
-        await sent_message.edit(
-            content="RCV: {:.2f}ms, M2M: {:.2f}ms, RTT: {:.2f}ms".format(
+        embed = discord.Embed(color=ctx.author.color, title='Ping times')
+        embed.description = content="RCV: {:.2f}ms,\nM2M: {:.2f}ms,\nRTT: {:.2f}ms".format(
                 (now - recv_time).total_seconds() * 1000,
                 (sent_message.created_at - recv_time).total_seconds() * 1000,
                 (rtt_time - now).total_seconds() * 1000
             )
-        )
+        await ctx.send(embed=embed)
 def setup(bot):
     bot.add_cog(Latency(bot))
