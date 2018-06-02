@@ -16,7 +16,13 @@ class Info:
         self.bot = bot
         self.session = self.bot.session
     
-    
+    @commands.command(aliases=['re'])
+    async def randomemoji(self, ctx)
+        """Sends a random emoji"""
+        try:
+            await ctx.send(str(random.choice([emoji for emoji in ctx.bot.emojis if emoji.require_colons])))
+        except ValueError:
+        await ctx.message.add_reaction(':EeveeShy:450878135936876554')
 
     
     
