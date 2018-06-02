@@ -11,6 +11,7 @@ import aiohttp
 import base64
 import urllib
 import json
+from discord.ext.commands import clean_content
 
 
 ZALGO_CHARS = [chr(x) for x in range(768, 879)]
