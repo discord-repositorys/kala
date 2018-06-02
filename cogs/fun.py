@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+import random as pyrandom
 import asyncio
 import datetime
 import time
