@@ -30,7 +30,9 @@ class Fun:
         except discord.Forbidden:
             pass
         finally:
-            await ctx.send(f'{ctx.author} said: ' + '\u200b' + msg)
+            embed = discord.Embed(color=ctx.author.color, title=f'{ctx.author} said:')
+	    embed.add_field(name=msg)
+            await ctx.send(embed=embed)
 	
     @commands.command()
     async def zalgo(self, ctx, *, text):
