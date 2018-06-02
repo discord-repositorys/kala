@@ -20,9 +20,39 @@ class Fun:
     def __init__(self, bot):
         self.bot = bot
 	
-    async def on_message(ctx, message):
-        if '(╯°□°）╯︵ ┻━┻' in message.content:
-            await ctx.send('┬─┬﻿ ノ( ゜-゜ノ)')
+    @commands.command(aliases=['re'])
+    async def randomemoji(self, ctx):
+        """Sends a random emoji"""
+        try:
+            await ctx.send(str(random.choice([emoji for emoji in ctx.bot.emojis if emoji.require_colons])))
+        except ValueError:
+            await ctx.message.add_reaction(':EeveeShy:450878135936876554')
+
+    @commands.command()
+    async def star(self, ctx, *, msg)
+        """Create a star oout of 1-50 character long"""
+        if (len(msg) > 50):
+            await ctx.msg.add_reaction(':EeveeShy:450878135936876554')
+	    return await ctx.send('Must be between less than 51 characters long.')
+        elif (len(msg) == 0):
+	    await ctx.msg.add_reaction(':EeveeShy:450878135936876554')
+	    return await ctx.send('String must be at least 1 character long.')
+        str = '```\n'
+	mid = len(msg) - 1
+	for i in range(len(msg) * 2 - 1):
+	    if (mid == i):
+	        str += msg[::-1] + msg[1:] + '\n'
+	    else:
+	        let = abs(mid - i)
+                str += " " * (mid - let)
+                str += msg[let]
+                str += " " * (let - 1)
+                str += msg[let]
+                str += " " * (let - 1)
+                str += msg[let]
+                str += "\n"
+	str += '```'
+	await ctx.send(str)
 	
     @commands.command()
     async def roast(self, ctx, user: discord.Member = None):
