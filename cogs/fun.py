@@ -22,17 +22,17 @@ class Fun:
     def __init__(self, bot):
         self.bot = bot
 				
-		@commands.command()
-		async def emojis(self, ctx):
-				"""Display lacal emojis"""
-				emojistr=''
-				emojis=ctx.guild.emojis
-				if len(emojis) == 0:
-					emojistr = 'No emojis in this server.'
-				else: 
-						for emote in emojis:
-							emojistr +=' '+str(emote)+' '
-				await ctx.send(emojistr)
+    @commands.command()
+    async def emojis(self, ctx):
+	"""Display lacal emojis"""
+	emojistr=''
+	emojis=ctx.guild.emojis
+	if len(emojis) == 0:
+	    emojistr = 'No emojis in this server.'
+	else: 
+	    for emote in emojis:
+	        emojistr +=' '+str(emote)+' '
+	await ctx.send(emojistr)
 				
 				
     @commands.command(pass_context=True)
