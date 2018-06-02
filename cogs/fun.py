@@ -21,7 +21,13 @@ class Fun:
     def __init__(self, bot):
         self.bot = bot
 	
-    
+    @commands.command(pass_context=True)
+    async def say(self, ctx, *, msg: clean_content()):
+        """Make the bot say something.
+        Prevents bot triggering and mentioning other users.
+        """
+	ctx.message.delete()
+	await ctx.send(f"{ctx.author} said: "  + "\u200b" + msg)
 	
     @commands.command()
     async def zalgo(self, ctx, *, text):
