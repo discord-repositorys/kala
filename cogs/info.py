@@ -22,7 +22,7 @@ class Info:
 	    emo = discord.utils.get(self.bot.emojis, name = emoji)
 	    if emo is None:
 	        return await ctx.send("I couldn't find that emoji. Either I'm not in the server, or no such emoji exists.")
-        resp = await self.session.get(f'https://cdn.discordapp.com/emojis/{emo.id}")
+            resp = await self.session.get(f'https://cdn.discordapp.com/emojis/{emo.id}")
 	    resp = await resp.read()
 	    if e.animated:
 	        extension = '.gif'
