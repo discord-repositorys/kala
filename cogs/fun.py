@@ -25,10 +25,10 @@ class Fun:
     @commands.command(pass_context=True)
     async def say(self, ctx, *, msg: clean_content()):
         """Make the bot say something. Prevents bot triggering and mentioning other users."""
-	try:
-	    await ctx.message.delete()
-	except discord..Forbidden:
-	    pass
+        try:
+            await ctx.message.delete()
+        except discord.Forbidden:
+            pass
         finally:
             await ctx.send(f'{ctx.author} said: ' + '\u200b' + msg)
 	
