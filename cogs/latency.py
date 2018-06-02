@@ -18,12 +18,14 @@ class Latency:
         now = datetime.utcnow()
         self.message_latencies.append((now, now - message.created_at))
 
-    @commands.command()
-    async def message_lat(self, ctx):
+    @commands.command(aliases=['msgl'])
+    async def messagelat(self, ctx):
         """Mean latency for last 500 messages."""
-        await ctx.send("{:.2f}ms".format(
+        embed = discord.Embed(color=ctx.author.color, title='Last 500 messages latency')
+        embed.description = "{:.2f}ms".format(
             1000 * statistics.mean(
-                lat.total_seconds() for ts, lat in self.message_latencies)))
+                lat.total_seconds() for ts, lat in self.message_latencies))
+        await ctx.send(embed = embed)
 
     @commands.command()
     async def rtt(self, ctx):
