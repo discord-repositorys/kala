@@ -22,6 +22,23 @@ class Fun:
         self.bot = bot
 	
     @commands.command()
+    async def msgsource(self, ctx, *, msg_id: int):
+        """Show source for a message."""
+        try:
+            msg = await ctx.get_message(msg_id)
+        except discord.NotFound:
+            return awaitctx.send("Message not found")
+        else:
+            await ctx.send("```{}```".format(utils.clean_triple_backtick(msg.content)))
+
+    @commands.command()
+    async def msgraw(self, ctx, *, msg_id: int):
+        """Show raw JSON for a message."""
+        raw = await ctx.bot.http.get_message(ctx.channel.id, msg_id)
+
+        await ctx.send("```json\n{}```".format(utils.clean_triple_backtick(json.dumps(raw, indent=2))))
+	
+    @commands.command()
     async def zalgo(self, ctx, *, text):
         """I̤̠̬T̢̐͟ Ì̦̮Sͣͣ͠ C̋͢͠Ơ̸̂M̥̟̂I̟̾̐N̊̔Ǵ͞ F͉̃ͅO̠̳ͭR̾̄̉ Y͚̜͡O̮̮̩Ù͚͎."""
         await ctx.send("".join(
