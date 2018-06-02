@@ -56,6 +56,13 @@ class Fun:
         str += "```"
         await ctx.send(str)
 	
+    @command()
+    async def roll(self, ctx, *, num: int=100):
+        """Random number from 0 to num."""
+        if num <= 0:
+            return await ctx.send("Try a number greater than 0.")
+        await ctx.send("{0}".format(pyrandom.randint(0, num)))
+	
     @commands.command()
     async def roast(self, ctx, user: discord.Member = None):
       async with aiohttp.ClientSession().get('https://insult.mattbas.org/api/insult.json') as resp:
