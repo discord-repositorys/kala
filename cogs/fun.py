@@ -12,13 +12,24 @@ import urllib
 import json
 
 
-
+ZALGO_CHARS = [chr(x) for x in range(768, 879)]
 
 
 class Fun:
     """Fun Commands"""
     def __init__(self, bot):
         self.bot = bot
+	
+    @commands.command()
+    async def zalgo(self, ctx, *, text):
+        """I̤̠̬T̢̐͟ Ì̦̮Sͣͣ͠ C̋͢͠Ơ̸̂M̥̟̂I̟̾̐N̊̔Ǵ͞
+        F͉̃ͅO̠̳ͭR̾̄̉ Y͚̜͡O̮̮̩Ù͚͎."""
+        await ctx.send("".join(
+            c + "".join(
+                random.choice(ZALGO_CHARS) for _
+                in range(pyrandom.randint(2, 7) * c.isalnum()))
+            for c in text
+	))
 	
     @commands.command(aliases=['re'])
     async def randomemoji(self, ctx):
