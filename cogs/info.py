@@ -14,7 +14,7 @@ class Info:
     """Info Commands"""
     def __init__(self, bot):
         self.bot = bot
-	self.session = self.bot.session
+        self.session = self.bot.session
     
     @commands.command(aliases=['se'])
     async def searchemoji(self, ctx, *, emoji):
