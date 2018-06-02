@@ -17,7 +17,7 @@ class Info:
         self.session = self.bot.session
     
     @commands.command(aliases=['re'])
-    async def randomemoji(self, ctx)
+    async def randomemoji(self, ctx):
         """Sends a random emoji"""
         try:
             await ctx.send(str(random.choice([emoji for emoji in ctx.bot.emojis if emoji.require_colons])))
