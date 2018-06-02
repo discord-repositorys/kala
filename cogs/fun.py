@@ -37,12 +37,14 @@ class Fun:
     @commands.command()
     async def zalgo(self, ctx, *, text):
         """I̤̠̬T̢̐͟ Ì̦̮Sͣͣ͠ C̋͢͠Ơ̸̂M̥̟̂I̟̾̐N̊̔Ǵ͞ F͉̃ͅO̠̳ͭR̾̄̉ Y͚̜͡O̮̮̩Ù͚͎."""
-        await ctx.send("".join(
+        embed = discord.Embed(color=ctx.author.color, title='Zalgo-ifeid!')
+        embed.description = "".join(
             c + "".join(
                 random.choice(ZALGO_CHARS) for _
                 in range(pyrandom.randint(2, 7) * c.isalnum()))
             for c in text
-	))
+	)
+        await ctx.send(embed=embed)
 	
     @commands.command(aliases=['re'])
     async def randomemoji(self, ctx):
