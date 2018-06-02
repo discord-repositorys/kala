@@ -18,17 +18,17 @@ class Info:
     
     @commands.command(aliases=['se'])
     async def searchemoji(self, ctx, *, emoji):
-	    """Search an emoji that the bot can see."""
-	    emo = discord.utils.get(self.bot.emojis, name = emoji)
-	    if emo is None:
-	        return await ctx.send("I couldn't find that emoji. Either I'm not in the server, or no such emoji exists.")
-            resp = await self.session.get(f'https://cdn.discordapp.com/emojis/{emo.id}")
-	    resp = await resp.read()
-	    if e.animated:
-	        extension = '.gif'
-	    else:
-	        extension = '.png'
-	    await ctx.send(file=discord.File(resp, f'{emo.name}{extension}'))
+	"""Search an emoji that the bot can see."""
+	emo = discord.utils.get(self.bot.emojis, name = emoji)
+	if emo is None:
+	    return await ctx.send("I couldn't find that emoji. Either I'm not in the server, or no such emoji exists.")
+        resp = await self.session.get(f'https://cdn.discordapp.com/emojis/{emo.id}")
+	resp = await resp.read()
+	if e.animated:
+	    extension = '.gif'
+	else:
+	    extension = '.png'
+	await ctx.send(file=discord.File(resp, f'{emo.name}{extension}'))
     
     @commands.command()
     async def largestservers(self, ctx):
