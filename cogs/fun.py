@@ -29,7 +29,7 @@ class Fun:
             await ctx.message.add_reaction(':EeveeShy:450878135936876554')
 
     @commands.command()
-    async def star(self, ctx, *, msg)
+    async def star(self, ctx, *, msg):
         """Create a star oout of 1-50 character long"""
         if (len(msg) > 50):
             await ctx.msg.add_reaction(':EeveeShy:450878135936876554')
