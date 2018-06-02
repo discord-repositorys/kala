@@ -56,7 +56,7 @@ class Fun:
         str += "```"
         await ctx.send(str)
 	
-    @command()
+    @commands.command()
     async def roll(self, ctx, *, num: int=100):
         """Random number from 0 to num."""
         if num <= 0:
