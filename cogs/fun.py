@@ -36,7 +36,7 @@ class Fun:
 	    return await ctx.send('Must be between less than 51 characters long.')
         elif (len(msg) == 0):
 	    await ctx.msg.add_reaction(':EeveeShy:450878135936876554')
-	    return await ctx.send('String must be at least 1 character long.')
+	    return await ctx.send('Must be at least 1 character.')
         str = '```\n'
 	mid = len(msg) - 1
 	for i in range(len(msg) * 2 - 1):
