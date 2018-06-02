@@ -31,7 +31,7 @@ class Fun:
             pass
         finally:
             embed = discord.Embed(color=ctx.author.color, title=f'{ctx.author} said:')
-            embed.add_field(name=msg)
+            embed.description = msg
             await ctx.send(embed=embed)
 	
     @commands.command()
