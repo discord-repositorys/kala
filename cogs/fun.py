@@ -30,8 +30,8 @@ class Fun:
 
     @commands.command()
     async def star(self, ctx, *, msg):
-        """Create a star out of a string 1-50 characters long."""
-        if (len(msg) > 50):
+        """Create a star out of a string 1-25 characters long."""
+        if (len(msg) > 25):
             return await ctx.send("String must be less than 26 characters")
         elif (len(msg) == 0):
             return await ctx.send("String must be at least 1 character")
