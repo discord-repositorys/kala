@@ -26,7 +26,6 @@ class Fun:
         """Make the bot say something.
         Prevents bot triggering and mentioning other users.
         """
-	ctx.message.delete()
 	await ctx.send(f"{ctx.author} said: "  + "\u200b" + msg)
 	
     @commands.command()
