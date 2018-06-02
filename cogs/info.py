@@ -18,19 +18,7 @@ class Info:
     
     
 
-    @commands.command(aliases=['se'])
-    async def searchemoji(self, ctx, *, emoji)
-	"""Search an emoji"""
-	emo = discord.utils(self.bot.emojis, name = emoji)
-        if emo is None:
-            ctx.send('Can\'t find the emoji, Please try again. Or I\'m not in the server in which that emoji is in.')
-        resp = await self.session.get(f'https://cdn.discordapp.com/emojis/{emo.id}")
-        resp = await resp.read()
-        if emo.animated:
-            extension = '.gif'
-        else:
-            extension = '.png'
-        await ctx.send(file=discord.File(resp, f'{emo.name}{extension}'))
+    
     
     @commands.command()
     async def largestservers(self, ctx):
