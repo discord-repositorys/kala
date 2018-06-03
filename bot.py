@@ -67,7 +67,15 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    await bot.change_presence(activity=discord.Game(name='a webcast of you sleep', type=1, url='https://twitch.tv/scarecrowboat'))
+    while True:
+        await bot.change_presence(activity=discord.Game(type=discord.ActivityType.listening, name='to you sleep'))
+        await asyncio.sleep(2)
+        await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="you sleep"))
+        await asyncio.sleep(2)
+        await bot.change_presence(activity=discord.Streaming(name="you sleep", url="https://www.twicth.tv/scarecrow"))
+        await asyncio.sleep(2)
+        
+        
 @bot.event
 async def on_command(ctx):
     bot.commands_run += 1
