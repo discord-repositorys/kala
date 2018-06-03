@@ -1,4 +1,5 @@
 aiohttp
+ezjson
 colorthief
 asyncio
 async-timeout
