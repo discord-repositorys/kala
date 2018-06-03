@@ -11,7 +11,7 @@ from discord.ext import commands
 class CR:
     def __init__(self, bot):
         self.bot = bot
-        self.token = os.environ.get('CRAPI')
+        self.token = os.environ.get(['CRAPI'])
         self.client = clashroyale.Client(token=self.token, is_async=True)
 
 
