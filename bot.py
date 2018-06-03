@@ -67,7 +67,7 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    await bot.change_presence(activity=discord.Game(discord.ActivityType.listening, 'to you sleep.'))
+    await bot.change_presence(activity=discord.Listening(name='to you sleep'))
 
 @bot.event
 async def on_command(ctx):
