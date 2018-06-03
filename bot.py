@@ -72,8 +72,6 @@ async def on_ready():
         await asyncio.sleep(2)
         await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="you sleep"))
         await asyncio.sleep(2)
-        await bot.change_presence(activity=discord.Streaming(name="you sleep", url="https://www.twitch.tv/scarecrowboat"))
-        await asyncio.sleep(2)
         
         
 @bot.event
