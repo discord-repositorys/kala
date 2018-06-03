@@ -117,6 +117,7 @@ bot.load_extension("cogs.utility")
 bot.load_extension("cogs.owner")
 bot.load_extension("cogs.fun")
 bot.load_extension("cogs.latency")
+bot.load_extension("cogs.cr")
 
 
 @bot.command(name='eval')
