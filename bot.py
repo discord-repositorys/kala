@@ -67,7 +67,7 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    await bot.change_presence(activity=discord.Game(name='Bleh', type=2, url='https://twitch.tv/scarecrowboat'))
+    await bot.change_presence(activity=discord.Game(name='a webcast of you sleep', type=1, url='https://twitch.tv/scarecrowboat'))
 @bot.event
 async def on_command(ctx):
     bot.commands_run += 1
