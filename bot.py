@@ -68,7 +68,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     while True:
-        await bot.change_presence(activity=discord.Game(type=discord.ActivityType.listening, name='to you sleep'))
+        await bot.change_presence(activity=discord.Game(type=discord.ActivityType.listening, name='with you in your sleep'))
         await asyncio.sleep(2)
         await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="you sleep"))
         await asyncio.sleep(2)
