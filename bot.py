@@ -18,6 +18,7 @@ import aiohttp
 
 bravo_db = AsyncIOMotorClient(os.environ['DB'])
 cr_db = AsyncIOMotorClient(os.environ['cr_db'])
+bot.cr_db = db.clashroyaledb
 
 async def getprefix(bot, message):
     if isinstance(message.channel, discord.DMChannel): return "k."
