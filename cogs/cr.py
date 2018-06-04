@@ -15,7 +15,7 @@ class CR:
         self.token = os.environ.get('CRAPI')
         self.client = clashroyale.Client(token=self.token, is_async=True)
 
-    bot.db = AsyncIOMotorClient(o
+    
     def check_tag(self, crtag):
         for char in crtag:
             if char.upper() not in '0289PYLQGRJCUV':
