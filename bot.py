@@ -43,7 +43,7 @@ bot = commands.Bot(command_prefix=getprefix, owner_id=426060491681431562)
 bot._last_result = None
 bot.commands_run = 0
 bot.session = aiohttp.ClientSession()
-bot.cr_db = cr_db.datorangebot
+
 
 def cleanup_code(content):
     '''Automatically removes code blocks from the code.'''
