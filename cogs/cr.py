@@ -7,6 +7,7 @@ import clashroyale
 import traceback
 from discord.ext import commands
 
+bot.db = AsyncIOMotorClient(os.environ['cr_db'])
 
 class CR:
     def __init__(self, bot):
@@ -30,7 +31,7 @@ class CR:
 
 
     async def get_tag(self, id):
-        y = await self.bot.cr_db.crtags.find_one({"id": str(id)})
+        y = await self.bot.db.cr_db.crtags.find_one({"id": str(id)})
         return y['tag'] if y is not None else None
 
     @commands.command(aliases=['crsave'])
