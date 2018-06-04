@@ -6,7 +6,7 @@ import ezjson
 import clashroyale
 import traceback
 from discord.ext import commands
-
+from motor.motor_asyncio import AsyncIOMotorClient
 bot.db = AsyncIOMotorClient(os.environ['cr_db'])
 
 class CR:
