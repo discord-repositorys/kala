@@ -17,7 +17,7 @@ import aiohttp
 
 
 bravo_db = AsyncIOMotorClient(os.environ['DB'])
-cr_db = AsyncIOMotorClient(os.environ['cr_db'])
+cr_db = AsyncIOMotorClient(os.environ.get(['cr_db']))
 
 
 async def getprefix(bot, message):
