@@ -7,7 +7,7 @@ import clashroyale
 import traceback
 from discord.ext import commands
 from motor.motor_asyncio import AsyncIOMotorClient
-bot.db = AsyncIOMotorClient(os.environ['cr_db'])
+
 
 class CR:
     def __init__(self, bot):
@@ -15,6 +15,7 @@ class CR:
         self.token = os.environ.get('CRAPI')
         self.client = clashroyale.Client(token=self.token, is_async=True)
 
+    bot.db = AsyncIOMotorClient(os.environ['cr_db'])
 
     def check_tag(self, crtag):
         for char in crtag:
