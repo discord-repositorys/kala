@@ -31,7 +31,7 @@ class CR:
 
 
     async def get_tag(self, id):
-        y = await self.bot.cr_db.crtags.find_one({"id": str(id)})
+        y = await self.bot.db.crtags.find_one({"id": str(id)})
         return y['tag'] if y is not None else None
 
     @commands.command(aliases=['crsave'])
