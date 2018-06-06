@@ -17,7 +17,7 @@ import aiohttp
 
 
 bravo_db = AsyncIOMotorClient(os.environ['DB'])
-cr_db = AsyncioMototClient(os.environ['cr_db'])
+cr_db = AsyncIOMototClient(os.environ['cr_db'])
 
 
 
