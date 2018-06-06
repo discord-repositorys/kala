@@ -17,6 +17,7 @@ import aiohttp
 
 
 bravo_db = AsyncIOMotorClient(os.environ['DB'])
+cr_db = AsyncioMototClient(os.environ['cr_db'])
 
 
 
@@ -43,7 +44,7 @@ bot = commands.Bot(command_prefix=getprefix, owner_id=426060491681431562)
 bot._last_result = None
 bot.commands_run = 0
 bot.session = aiohttp.ClientSession()
-bot.db = AsyncIOMotorClient(os.environ['DB'])
+
 
 
 
