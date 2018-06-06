@@ -46,7 +46,7 @@ class CR:
             e = discord.Embed(color=ctx.author.color, title="Invalid Tag.") 
             e.description = "Please make sure you have enterd your tag correctly." 
             return await ctx.send(embed=e)
-        await self.bot.cr_db.crtags.update_one({"id": str(ctx.author.id)}, {"$set": {"tag": crtag}}, upsert=True)
+        await self.bot.db.crtags.update_one({"id": str(ctx.author.id)}, {"$set": {"tag": crtag}}, upsert=True)
         e = discord.Embed(color=ctx.author.color, title='Saved!')
         e.description = 'Your Clash Royale tag has been saved!'
         await ctx.send(embed=e)
