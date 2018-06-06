@@ -74,9 +74,9 @@ async def on_ready():
     print('------')
     while True:
         await bot.change_presence(activity=discord.Game(type=discord.ActivityType.listening, name='with you in your sleep'))
-        await asyncio.sleep(2)
+        await asyncio.sleep(10)
         await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="you sleep"))
-        await asyncio.sleep(2)
+        await asyncio.sleep(10)
         
         
 @bot.event
