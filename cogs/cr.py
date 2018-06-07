@@ -90,8 +90,6 @@ class CR:
             else:
                 globalrank = profile.rank
             e.add_field(name='Global Rank', value=f"{globalrank} {self.emoji('legendtrophy')}")
-            e.add_field(name="Challenge Wins", value=f"{profile.stats.challengeWins} {self.emoji('12wins')}")
-            e.add_field(name="Challenge Losses", value=f"{profile.stats.challengeLosses}")
             e.add_field(name="Max Challenge Wins", value=f"{profile.stats.challengeMaxWins} {self.emoji('12wins')}")
             e.add_field(name="Challenge Cards Won", value=f"{profile.stats.challengeCardsWon} {self.emoji('cards')}")
             e.add_field(name="Tourmanent Match Wins", value=f"{profile.stats.tournamentWins} {self.emoji('trophy')}")
