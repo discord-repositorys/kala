@@ -16,14 +16,13 @@ import re
 import aiohttp
 
 
-bravo_db = AsyncIOMotorClient(os.environ['DB'])
-db = AsyncIOMotorClient(os.environ['cr_db'])
+db = AsyncIOMotorClient(os.environ['DB'])
 
 
 
 async def getprefix(bot, message):
     if isinstance(message.channel, discord.DMChannel): return "k."
-    l = await bravo_db.bravo.prefix.find_one({"id": str(message.guild.id)})
+    l = await db.bravo.prefix.find_one({"id": str(message.guild.id)})
     pre = None
     lol = None
     if l:
@@ -37,14 +36,14 @@ async def getprefix(bot, message):
     return lol or pre or "k."
 
 async def save_prefix(prefix, guildID, ctx):
-    await bravo_db.bravo.prefix.update_one({"id": str(ctx.guild.id)}, {"$set": {"prefix": prefix}}, upsert=True)
+    await db.bravo.prefix.update_one({"id": str(ctx.guild.id)}, {"$set": {"prefix": prefix}}, upsert=True)
 
 #prefixes=['k.', 'K.']
 bot = commands.Bot(command_prefix=getprefix, owner_id=426060491681431562)
 bot._last_result = None
 bot.commands_run = 0
 bot.session = aiohttp.ClientSession()
-bot.db = AsyncIOMotorClient(os.environ['cr_db'])
+bot.db = AsyncIOMotorClient(os.environ['DB'])
 
 
 
