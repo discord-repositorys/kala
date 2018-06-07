@@ -31,7 +31,7 @@ class CR:
 
 
     async def get_tag(self, id):
-        y = await self.bot.db.cr_tags.crtags.find_one({"id": str(id)})
+        y = await self.bot.db.bravo.crtags.find_one({"id": str(id)})
         return y['tag'] if y is not None else None
 
     @commands.command(aliases=['crsave'])
@@ -46,7 +46,7 @@ class CR:
             e = discord.Embed(color=ctx.author.color, title="Invalid Tag.") 
             e.description = "Please make sure you have enterd your tag correctly." 
             return await ctx.send(embed=e)
-        await self.bot.db.cr_tags.crtags.update_one({"id": str(ctx.author.id)}, {"$set": {"tag": crtag}}, upsert=True)
+        await self.bot.db.bravo.crtags.update_one({"id": str(ctx.author.id)}, {"$set": {"tag": crtag}}, upsert=True)
         e = discord.Embed(color=ctx.author.color, title='Saved!')
         e.description = 'Your Clash Royale tag has been saved!'
         await ctx.send(embed=e)
