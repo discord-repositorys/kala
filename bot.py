@@ -21,19 +21,19 @@ db = AsyncIOMotorClient(os.environ['DB'])
 
 
 async def getprefix(bot, message):
-    if isinstance(message.channel, discord.DMChannel): return "k."
+    if isinstance(message.channel, discord.DMChannel): return "n."
     l = await db.bravo.prefix.find_one({"id": str(message.guild.id)})
     pre = None
     lol = None
     if l:
-        pre = l.get('prefix') or "k."
+        pre = l.get('prefix') or "n."
     else:
         match = re.match(f"<@!?{bot.user.id}> ", message.content)   
         if match:
             lol = match.group()
         else:
             lol = None
-    return lol or pre or "k."
+    return lol or pre or "n."
 
 async def save_prefix(prefix, guildID, ctx):
     await db.bravo.prefix.update_one({"id": str(ctx.guild.id)}, {"$set": {"prefix": prefix}}, upsert=True)
