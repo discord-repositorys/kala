@@ -23,7 +23,7 @@ class CR:
             return True
 
     def emoji(self, name):
-        with open('emojiscr.json') as f:
+        with open('../emojiscr.json') as f:
             skra = json.load(f.read())
         e = skra[name]
         emo = self.bot.get_emoji(int(e))
