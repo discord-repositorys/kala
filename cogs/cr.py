@@ -92,7 +92,7 @@ class CR:
             e.add_field(name='Global Rank', value=f"{globalrank} {self.emoji('legendtrophy')}")
             e.add_field(name="Max Challenge Wins", value=f"{profile.stats.challengeMaxWins} {self.emoji('12wins')}")
             e.add_field(name="Challenge Cards Won", value=f"{profile.stats.challengeCardsWon} {self.emoji('cards')}")
-            e.add_field(name="Tournament Cards Won", value=f"{profile.stats.tourmanentCardsWon} {self.emoji('12wins')}")
+            e.add_field(name="Tournament Cards Won", value=f"{profile.stats.tournamentCardsWon} {self.emoji('12wins')}")
             try:
                 clan = await profile.get_clan()
                 e.add_field(name=f"Clan ({clan.name})", value=f"{clan.name} #{clan.tag}")
