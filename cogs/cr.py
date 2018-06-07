@@ -25,7 +25,7 @@ class CR:
     def emoji(self, name):
         with open("emojiscr.json") as f:
             skra = json.load(f.read())
-        e = skra[name]
+        e = skra[str(name)]
         emo = self.bot.get_emoji(int(e))
         return emo if emo is not None else None
 
