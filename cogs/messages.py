@@ -7,7 +7,7 @@ class Config:
     '''Make some Welcome And Goodbye messages for your server!'''
 
     def __init__(self, bot):
-    self.bot = bot
+        self.bot = bot
 
     
     @commands.command()
