@@ -34,7 +34,7 @@ class CR:
         y = await self.bot.db.bravo.crtags.find_one({"id": str(id)})
         return y['tag'] if y is not None else None
 
-    @commands.command(aliases=['crsave'])
+    @commands.command()
     async def crsave(self, ctx, crtag):
         """Save a Clash Royale tag to your Discord account."""
         await ctx.trigger_typing()
