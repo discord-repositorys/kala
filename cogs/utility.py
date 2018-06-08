@@ -286,58 +286,7 @@ class Utility:
         embed.set_thumbnail(url='https://cdn2.iconfinder.com/data/icons/weather-icons-8/512/day-clear-256.png')
         await ctx.send(embed=embed)
 
-    @commands.group(invoke_without_command=True)
-    async def role(self, ctx, userid, *args):
-        """Sets a role to a user
-        
-        Usage: k.role @user <role name>"""
-        permissions = dict(iter(ctx.message.channel.permissions_for(ctx.message.author)))
-        if not permissions['manage_roles']:
-            await ctx.send("You need 'Manage roles' permission to do this!")
-            return
-        args = ' '.join(args)
-        args = str(args)
-        mentions = ctx.message.mentions
-        for user in mentions:
-            role = discord.utils.get(ctx.guild.roles, name=args)
-            await user.add_roles(role)
-            await ctx.send("Set role {} for {}!".format(args, user.mention))
-
-    @role.command()
-    @commands.has_permissions(manage_server=True)
-    async def set(self, ctx, userid, *args):
-        """Sets a role to a user
-        
-        Usage: k.role set @user <role name>"""
-        permissions = dict(iter(ctx.message.channel.permissions_for(ctx.message.author)))
-        if not permissions['manage_roles']:
-            await ctx.send("You need 'Manage roles' permission to do this!")
-            return
-        args = ' '.join(args)
-        args = str(args)
-        mentions = ctx.message.mentions
-        for user in mentions:
-            role = discord.utils.get(ctx.guild.roles, name=args)
-            await user.add_roles(role)
-            await ctx.send("Set role {} for {}!".format(args, user.mention))
-
-    @role.command()
-    @commands.has_permissions(manage_server=True)
-    async def remove(self, ctx, userid, *args):
-        """Removes a role from a user
-        
-        Usage: k.role remove @user <role name>"""
-        permissions = dict(iter(ctx.message.channel.permissions_for(ctx.message.author)))
-        if not permissions['manage_roles']:
-            await ctx.send("You need 'Manage roles' permission to do this!")
-            return
-        args = ' '.join(args)
-        args = str(args)
-        mentions = ctx.message.mentions
-        for user in mentions:
-            role = discord.utils.get(ctx.guild.roles, name=args)
-            await user.remove_roles(role)
-            await ctx.send("Remove role {} for {}!".format(args, user.mention))
+    
 
     
     @commands.command(pass_context=True)
