@@ -29,7 +29,7 @@ class Fun:
         async with aiohttp.ClientSession() as session:
             async with session.get('https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke') as resp:
                 data = await resp.json()
-        em = discord.Embed(color=discord.Color.green())
+        em = discord.Embed(color=ctx.author.color)
         em.title = data['setup']
         em.description = data['punchline']
         await ctx.send(embed=em)
