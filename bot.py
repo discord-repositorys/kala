@@ -124,7 +124,6 @@ bot.load_extension("cogs.owner")
 bot.load_extension("cogs.fun")
 bot.load_extension("cogs.latency")
 bot.load_extension("cogs.cr")
-bot.load_extension("cogs.messages")
 
 
 
