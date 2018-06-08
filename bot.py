@@ -261,10 +261,7 @@ async def cmdsrun(ctx):
     """See how many commands the bot has run!"""
     await ctx.send(bot.commands_run)
         
-@bot.command()
-async def invite(ctx):
-    """Invite Kala to your guild."""
-    await ctx.send('https://discordapp.com/oauth2/authorize?client_id=450419305671032832&scope=bot&permissions=1547005143')
+
 
 
 bot.run(os.environ['TOKEN'])
