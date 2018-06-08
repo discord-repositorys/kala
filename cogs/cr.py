@@ -35,7 +35,7 @@ class CR:
         return y['tag'] if y is not None else None
 
     @commands.command(aliases=['crsave'])
-    async def save(self, ctx, crtag):
+    async def crsave(self, ctx, crtag):
         """Save a Clash Royale tag to your Discord account."""
         await ctx.trigger_typing()
         if crtag is None:
@@ -53,7 +53,7 @@ class CR:
     
     
     @commands.command()
-    async def profile(self, ctx, crtag=None):
+    async def crprofile(self, ctx, crtag=None):
         """Get your Clash Royale stats. All in one command."""
         await ctx.trigger_typing()
         try:
@@ -113,6 +113,42 @@ class CR:
             await ctx.send(embed=e)
         except Exception as e:
             print(traceback.format_exc())
+            
+            
+    @commands.command()
+    async def crclan(self, ctx, clantag=None):
+        """Grab some info about a clan from hotdig.info ;)"""
+        await ctx.trigger_typing()
+        if clantag is None:
+            crtag = await self.get_tag(ctx.author.id)
+            if not crtag:
+                e = discord.Embed(title="Oh No!", color=ctx.author.color)
+                e.add_field(name="No tag saved!", value=f"Please use {ctx.prefix}crsave to save your Clash Royale tag.")
+                return await ctx.send(embed=e)
+        try:
+            profile = await self.client.get_player(crtag)
+            clan = await profile.get_clan()
+        except AttributeError:
+            em = discord.Embed(color=ctx.author.color, title="Um...Really?")
+            em.add_field(name="Uh...", value="I think you have to be in a clan for this to work.")
+            await ctx.send(embed=em)
+        embed.description = f'{clan.description}'
+        embed.add_field(name='Clan Trophies', value=f'{clan.score}')
+        embed.add_field(name='Members', value=f'{clan.memberCount}/50')
+        embed.add_field(name='Type', value=f'{clan.type}')
+        embed.add_field(name='Weekly Donations', value=f'{clan.donations}')
+        embed.add_field(name='Location', value=f'{clan.location.name}')
+        if not clan.war:
+            war = "Not in Progress"
+        else:
+            if clan.war.state == "warDay":
+                war = "War Day :crossed_swords:"
+            elif clan.war.state == "collectionDay":
+                war = f"Collection Day {self.emoji('deck')}"
+        embed.add_field(name="Clan War Status", value=war)
+        embed.add_field(name='Trophy Requirement', value=f'{clan.requiredScore}')
+        embed.set_thumbnail(url=f'{clan.badge.image}')
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(CR(bot))
