@@ -112,7 +112,7 @@ class Mod:
         except:
             await ctx.send("Error! Usage: [prefix]dm [tag person] [msg]")
 
-     @commands.group(invoke_without_command=True)
+    @commands.group(invoke_without_command=True)
     async def role(self, ctx, userid, *args):
         """Sets a role to a user
         
