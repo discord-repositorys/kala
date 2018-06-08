@@ -10,12 +10,10 @@ class Messages:
         self.bot = bot
 
     
-    @commands.command()
+    @commands.command(aliases=['setwelcome', 'welcomemsg', 'joinmessage', 'welcomeset'], no_pm=True)
     @commands.has_permissions(manage_guild=True)
     async def welcome(self, ctx, type):
-        '''Enable or disable a welcome message for your server
-        Code used from Remixbot
-        '''
+        '''Enable or disable a welcome message for your guild'''
         def pred(m):
             return m.author == ctx.author and m.channel == ctx.message.channel
 
@@ -26,7 +24,7 @@ class Messages:
         if type.lower() in ('n', 'no', 'disabled', 'disable', 'off'):
             config['welctype'] = False
             await self.bot.db.config.update({'_id': str(ctx.guild.id)}, {'$set': config})
-            await ctx.send('You have disabled welcome messages for this server.')
+            await ctx.send('Welcome messages disabled for this guild.')
         else:
             config['welctype'] = True
             await ctx.send('Which channel do you want the welcome messages to be set to? Use a channel mention.')
