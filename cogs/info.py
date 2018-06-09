@@ -232,7 +232,7 @@ class Info:
         embed = discord.Embed(color=color, title="Kala Bot Statistics")
         embed.description = "Kala#6605 Stats"
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/449682597937807363/450339949384826880/asdf.png")
-        embed.add_field(name=f"{self.bot.get_emoji(449682671862546443)} Creator", value=f'BloodyPikachu#0638 {self.bot.get_emoji(449682671862546443)}')
+        embed.add_field(name=f"{self.bot.get_emoji(449682671862546443)} Creator", value=f'BloodyPikachu#3174 {self.bot.get_emoji(449682671862546443)}')
         embed.add_field(name=f"{self.bot.get_emoji(450791022541406209)} Servers", value=f"{len(self.bot.guilds)}")
         embed.add_field(name=f'{self.bot.get_emoji(450791226459815936)} Users', value=member)
         embed.add_field(name=f'{self.bot.get_emoji(412747044403544074)} Ping', value=f'{self.bot.latency * 100:.4f} ms')
