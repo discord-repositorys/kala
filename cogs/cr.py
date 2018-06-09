@@ -132,6 +132,7 @@ class CR:
             em = discord.Embed(color=ctx.author.color, title="Um...Really?")
             em.add_field(name="Uh...", value="I think you have to be in a clan for this to work.")
             await ctx.send(embed=em)
+        embed = discord.Embed(title=f"{clan.name} ({clan.tag})", color = ctx.author.color)
         embed.description = f'{clan.description}'
         embed.add_field(name='Clan Trophies', value=f'{clan.score}')
         embed.add_field(name='Members', value=f'{clan.memberCount}/50')
