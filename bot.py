@@ -1,4 +1,3 @@
-
 import discord 
 from discord.ext import commands
 import asyncio
@@ -264,4 +263,6 @@ async def cmdsrun(ctx):
 
 
 
-bot.run(os.environ['TOKEN'])
+if not os.environ.get('TOKEN'):
+    print("no token found REEEE!")
+bot.run(os.environ.get('TOKEN').strip('"'), bot=False)
